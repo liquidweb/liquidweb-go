@@ -1,4 +1,4 @@
-package storm
+package client
 
 import "fmt"
 
@@ -19,4 +19,11 @@ func (e LWAPIError) Error() string {
 // use this function to determine if a LWAPIRes response indicates an error or not.
 func (e LWAPIError) HadError() bool {
 	return e.ErrorClass != ""
+}
+
+// LWAPIRes is a convenient interface used (for example) by CallInto to ensure a passed
+// struct knows how to indicate whether or not it had an error.
+type LWAPIRes interface {
+	Error() string
+	HadError() bool
 }
