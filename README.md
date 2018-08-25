@@ -18,5 +18,9 @@ stormServerParams := &storm.StormServerParams{
   password: "123",
   publicKey: "yourkey"
 }
-api.StormServer.Create(stormServerParams)
+stormServer, err := api.StormServer.Create(stormServerParams)
+if err != nil {
+  fmt.Errorf("Error creating storm server %v", err)
+}
+fmt.Println(stormServer.UniqID)
 ```
