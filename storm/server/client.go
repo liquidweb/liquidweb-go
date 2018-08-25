@@ -1,7 +1,11 @@
 package stormserver
 
-import stormclient "git.liquidweb.com/cnichols/storm-client/client"
+import "git.liquidweb.com/cnichols/storm-client/client"
 
 type Client struct {
-	API *stormclient.Client
+	API *client.Client
+}
+
+func (c *Client) Create() {
+
 }

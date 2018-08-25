@@ -10,7 +10,7 @@ type API struct {
 
 func NewAPI(config ClientConfig) *API {
 	// Initialize http backend
-	client := NewHTTPClient(config)
+	client := client.NewClient(config)
 
 	return &API{
 		StormServer: &stormserver.Client{Client: client}
