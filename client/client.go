@@ -62,7 +62,7 @@ type Client struct {
 }
 
 // NewClient
-func NewClient(config *Config) (*Client, error) {
+func NewClient(config *Config) *Client {
 	httpClient := &http.Client{Timeout: time.Duration(time.Duration(config.Timeout) * time.Second)}
 
 	if !config.SecureTLS {
@@ -71,8 +71,11 @@ func NewClient(config *Config) (*Client, error) {
 		}
 		httpClient.Transport = tr
 	}
-	client := Client{config, httpClient}
-	return &client, nil
+	client := &Client{
+		config:     config,
+		httpClient: httpClient}
+
+	return client
 }
 
 // Call takes a path, such as "network/zone/details" and a params structure.

@@ -1,11 +1,30 @@
 package stormserver
 
-import "git.liquidweb.com/cnichols/storm-client/client"
+import "git.liquidweb.com/masre/storm-client/client"
 
-type Client struct {
-	API *client.Client
+type StormServerClient interface {
+	Create() (*StormServer, *client.LWAPIError)
+	Details() (*StormServer, *client.LWAPIError)
+	Update() (*StormServer, *client.LWAPIError)
+	Destroy() (*StormServer, *client.LWAPIError)
 }
 
-func (c *Client) Create() {
+type Client struct {
+	Client *client.Client
+}
 
+func (c *Client) Create() (*StormServer, *client.LWAPIError) {
+	return &StormServer{}, nil
+}
+
+func (c *Client) Details() (*StormServer, *client.LWAPIError) {
+	return &StormServer{}, nil
+}
+
+func (c *Client) Update() (*StormServer, *client.LWAPIError) {
+	return &StormServer{}, nil
+}
+
+func (c *Client) Destroy() (*StormServer, *client.LWAPIError) {
+	return &StormServer{}, nil
 }

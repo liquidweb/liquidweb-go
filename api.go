@@ -1,18 +1,25 @@
 package storm
 
 import (
-	stormserver "git.liquidweb.com/cnichols/storm-client/storm/server"
+	"git.liquidweb.com/masre/storm-client/client"
+	stormserver "git.liquidweb.com/masre/storm-client/storm/server"
 )
 
 type API struct {
-	StormServer *stormserver.Client
+	StormServer stormserver.StormServerClient
 }
 
-func NewAPI(config ClientConfig) *API {
+func NewAPI(username string, password string, url string, timeout int) (*API, error) {
+	config, err := client.NewConfig(username, password, url, timeout, true)
+	if err != nil {
+		return nil, err
+	}
+
 	// Initialize http backend
 	client := client.NewClient(config)
-
-	return &API{
-		StormServer: &stormserver.Client{Client: client}
+	api := &API{
+		StormServer: &stormserver.Client{Client: client},
 	}
+
+	return api, nil
 }
