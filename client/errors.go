@@ -15,7 +15,7 @@ func (e LWAPIError) Error() string {
 	return fmt.Sprintf("%v: %v", e.ErrorClass, e.ErrorFullMsg)
 }
 
-// Given a LWAPIError, returns boolean if ErrorClass was present or not. You can
+// HadError returns boolean if ErrorClass was present or not. You can
 // use this function to determine if a LWAPIRes response indicates an error or not.
 func (e LWAPIError) HadError() bool {
 	return e.ErrorClass != ""

@@ -61,7 +61,7 @@ type Client struct {
 	httpClient *http.Client
 }
 
-// NewClient
+// NewClient returns a prepared API client.
 func NewClient(config *Config) *Client {
 	httpClient := &http.Client{Timeout: time.Duration(time.Duration(config.Timeout) * time.Second)}
 
