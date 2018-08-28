@@ -1,8 +1,8 @@
 package storm
 
 import (
-	"git.liquidweb.com/masre/storm-client/client"
-	stormserver "git.liquidweb.com/masre/storm-client/storm/server"
+	"git.liquidweb.com/masre/liquidweb-go/client"
+	stormserver "git.liquidweb.com/masre/liquidweb-go/storm/server"
 )
 
 // API is the structure that houses all of our various API clients that interact with various Storm resources.
