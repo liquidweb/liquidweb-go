@@ -2,8 +2,8 @@ package stormserver
 
 import "git.liquidweb.com/masre/liquidweb-go/client"
 
-type StormServerClient interface {
-	Create() (*StormServer, *client.LWAPIError)
+type StormConfigClient interface {
+	List() (*[]StormServer, *client.LWAPIError)
 	Details() (*StormServer, *client.LWAPIError)
 	Update() (*StormServer, *client.LWAPIError)
 	Destroy() (*StormServer, *client.LWAPIError)
