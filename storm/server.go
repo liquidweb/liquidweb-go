@@ -1,12 +1,12 @@
-package stormserver
+package storm
 
 import (
 	"net"
 	"time"
 )
 
-// StormServer represents the underlying Storm VPS.
-type StormServer struct {
+// Server represents the underlying Storm VPS.
+type Server struct {
 	ACCNT               string
 	Active              bool
 	BackupEnabled       bool
@@ -31,8 +31,8 @@ type StormServer struct {
 	Zone                int
 }
 
-// StormServerStates represents the various states the server can be in.
-var StormServerStates = []string{
+// ServerStates represents the various states the server can be in.
+var ServerStates = []string{
 	"Building",
 	"Cloning",
 	"Resizing",

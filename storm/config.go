@@ -1,7 +1,7 @@
-package stormserver
+package storm
 
-// StormConfig represents the configuration of the server.
-type StormConfig struct {
+// Config represents the configuration of the server.
+type Config struct {
 	ID                int
 	Active            bool
 	Available         bool
