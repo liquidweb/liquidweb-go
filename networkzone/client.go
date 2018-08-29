@@ -23,7 +23,8 @@ func (c *Client) Details(id int) *liquidweb.ZoneItem {
 	return zoneResult
 }
 
-func (c *Client) List() (*liquidweb.ZoneList, *client.LWAPIError) {
+// List returns a list of network zones.
+func (c *Client) List(params *liquidweb.ZoneParams) (*liquidweb.ZoneList, *client.LWAPIError) {
 	var zoneResults *liquidweb.ZoneList
 
 	c.Backend.CallInto("/v1/Network/Zone/list", nil, zoneResults)

@@ -1,5 +1,7 @@
 package storm
 
+import "git.liquidweb.com/masre/liquidweb-go/client"
+
 // Config represents the configuration of the server.
 type Config struct {
 	ID                int
@@ -23,4 +25,17 @@ type Config struct {
 	RAMTotal          int
 	VCPU              int
 	ZoneAvailability  *map[string]bool
+}
+
+// ConfigList is an envelope for the API result containing either a list of storm configs or an error.
+type ConfigList struct {
+	*client.LWAPIError
+	*client.ListMeta
+	Items []Config
+}
+
+// ConfigItem is an envelope for the API result containing either a storm config or an error.
+type ConfigItem struct {
+	*client.LWAPIError
+	Config
 }

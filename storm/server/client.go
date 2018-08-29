@@ -13,21 +13,21 @@ type ServerClient interface {
 }
 
 type Client struct {
-	Client *client.Client
+	Backend *client.Client
 }
 
-func (c *Client) Create() (*storm.Server, *client.LWAPIError) {
-	return &storm.Server{}, nil
+func (c *Client) Create() *storm.ServerItem {
+	return &storm.ServerItem{}
 }
 
-func (c *Client) Details() (*storm.Server, *client.LWAPIError) {
-	return &storm.Server{}, nil
+func (c *Client) Details() *storm.ServerItem {
+	return &storm.ServerItem{}
 }
 
-func (c *Client) Update() (*storm.Server, *client.LWAPIError) {
-	return &storm.Server{}, nil
+func (c *Client) Update() *storm.ServerItem {
+	return &storm.ServerItem{}
 }
 
-func (c *Client) Destroy() (*storm.Server, *client.LWAPIError) {
-	return &storm.Server{}, nil
+func (c *Client) Destroy() *storm.ServerItem {
+	return &storm.ServerItem{}
 }

@@ -7,12 +7,12 @@ import (
 
 // Zone is a grouping of network resources.
 type Zone struct {
-	ID             int                                `json:"id,omitempty"`
-	IsDefault      types.NumericalBoolean             `json:"is_default,omitempty"`
-	Name           string                             `json:"name,omitempty"`
-	Region         *map[string]types.NumericalBoolean `json:"region,omitempty"`
-	Status         string                             `json:"status,omitempty"`
-	ValidSourceHVS *map[string]types.NumericalBoolean `json:"valid_source_hvs,omitempty"`
+	ID             int                               `json:"id,omitempty"`
+	IsDefault      types.NumericalBoolean            `json:"is_default,omitempty"`
+	Name           string                            `json:"name,omitempty"`
+	Region         map[string]types.NumericalBoolean `json:"region,omitempty"`
+	Status         string                            `json:"status,omitempty"`
+	ValidSourceHVS map[string]types.NumericalBoolean `json:"valid_source_hvs,omitempty"`
 }
 
 // ZoneParams are the set of parameters you can pass to the API for Network Zones.

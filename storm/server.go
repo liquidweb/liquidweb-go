@@ -3,6 +3,8 @@ package storm
 import (
 	"net"
 	"time"
+
+	"git.liquidweb.com/masre/liquidweb-go/client"
 )
 
 // Server represents the underlying Storm VPS.
@@ -52,4 +54,17 @@ var ServerStates = []string{
 	"Adding IPs",
 	"Removing IP",
 	"Destroying",
+}
+
+// ServerList is an envelope for the API result containing either a list of storm configs or an error.
+type ServerList struct {
+	*client.LWAPIError
+	*client.ListMeta
+	Items []Server
+}
+
+// ServerItem is an envelope for the API result containing either a storm server or an error.
+type ServerItem struct {
+	*client.LWAPIError
+	Server
 }
