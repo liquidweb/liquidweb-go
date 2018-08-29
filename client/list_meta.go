@@ -1,9 +1,11 @@
 package client
 
+import "git.liquidweb.com/masre/liquidweb-go/types"
+
 type ListMeta struct {
-	ItemCount int `json:"item_count,omitempty"`
-	ItemTotal int `json:"item_total,omitempty"`
-	PageNum   int `json:"page_num,omitempty"`
-	PageSize  int `json:"page_size,omitempty"`
-	PageTotal int `json:"page_total,omitempty"`
+	ItemCount types.FlexInt `json:"item_count,omitempty"`
+	ItemTotal types.FlexInt `json:"item_total,omitempty"`
+	PageNum   types.FlexInt `json:"page_num,omitempty"`
+	PageSize  types.FlexInt `json:"page_size,omitempty"`
+	PageTotal types.FlexInt `json:"page_total,omitempty"`
 }

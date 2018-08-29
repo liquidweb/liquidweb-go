@@ -157,7 +157,7 @@ func (client *Client) CallInto(method string, params interface{}, into LWAPIRes)
 		return err
 	}
 
-	if into.HadError() {
+	if into.HasError() {
 		// the LWAPIRes satisfies the Error interface, so we can just return it on
 		// error.
 		return into

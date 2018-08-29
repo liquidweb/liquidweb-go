@@ -15,9 +15,9 @@ func (e LWAPIError) Error() string {
 	return fmt.Sprintf("%v: %v", e.ErrorClass, e.ErrorFullMsg)
 }
 
-// HadError returns boolean if ErrorClass was present or not. You can
+// HasError returns boolean if ErrorClass was present or not. You can
 // use this function to determine if a LWAPIRes response indicates an error or not.
-func (e LWAPIError) HadError() bool {
+func (e LWAPIError) HasError() bool {
 	return e.ErrorClass != ""
 }
 
@@ -25,5 +25,5 @@ func (e LWAPIError) HadError() bool {
 // struct knows how to indicate whether or not it had an error.
 type LWAPIRes interface {
 	Error() string
-	HadError() bool
+	HasError() bool
 }

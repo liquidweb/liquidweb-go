@@ -18,16 +18,19 @@ func (c *Client) Details(id int) *liquidweb.ZoneItem {
 	var zoneResult *liquidweb.ZoneItem
 	zoneParams := liquidweb.ZoneParams{ID: id}
 
-	c.Backend.CallInto("/v1/Network/Zone/detail", zoneParams, zoneResult)
+	c.Backend.CallInto("v1/Network/Zone/detail", zoneParams, zoneResult)
 
 	return zoneResult
 }
 
 // List returns a list of network zones.
-func (c *Client) List(params *liquidweb.ZoneParams) *liquidweb.ZoneList {
-	var zoneResults *liquidweb.ZoneList
+func (c *Client) List(params *liquidweb.ZoneListParams) (*liquidweb.ZoneList, error) {
+	zoneList := &liquidweb.ZoneList{}
 
-	c.Backend.CallInto("/v1/Network/Zone/list", nil, zoneResults)
+	err := c.Backend.CallInto("v1/Network/Zone/list", params, zoneList)
+	if err != nil {
+		return nil, err
+	}
 
-	return zoneResults
+	return zoneList, nil
 }
