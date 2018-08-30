@@ -28,7 +28,7 @@ func (nb *NumericalBoolean) UnmarshalJSON(d []byte) error {
 // FlexInt was shamelessly stolen from Chris to handle inconsistencies in the API returning numerical versus string IDs.
 type FlexInt int
 
-func (f *FlexInt) String() string {
+func (fi *FlexInt) String() string {
 	return strconv.Itoa(int(*f))
 }
 
