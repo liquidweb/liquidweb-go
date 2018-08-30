@@ -58,8 +58,8 @@ var ServerStates = []string{
 
 // ServerList is an envelope for the API result containing either a list of storm configs or an error.
 type ServerList struct {
-	*client.LWAPIError
-	*client.ListMeta
+	client.LWAPIError
+	client.ListMeta
 	Items []Server
 }
 
