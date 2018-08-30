@@ -9,14 +9,18 @@ import (
 type NumericalBoolean bool
 
 // UnmarshalJSON handles the unmarshalling of the NumericalBoolean type.
-func (nb NumericalBoolean) UnmarshalJSON(d []byte) error {
-	dString := string(d)
-	s, err := strconv.ParseBool(dString)
+func (nb *NumericalBoolean) UnmarshalJSON(d []byte) error {
+	var n int64
+	if err := json.Unmarshal(d, &n); err != nil {
+		return err
+	}
+	nString := strconv.FormatInt(n, 10)
+	s, err := strconv.ParseBool(nString)
 	if err != nil {
 		return err
 	}
 
-	nb = NumericalBoolean(s)
+	*nb = NumericalBoolean(s)
 
 	return nil
 }
