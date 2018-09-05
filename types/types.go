@@ -29,7 +29,7 @@ func (nb *NumericalBoolean) UnmarshalJSON(d []byte) error {
 type FlexInt int
 
 func (fi *FlexInt) String() string {
-	return strconv.Itoa(int(*f))
+	return strconv.Itoa(int(*fi))
 }
 
 // UnmarshalJSON handles the unmarshalling of the FlexInt type.
