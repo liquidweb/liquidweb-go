@@ -2,7 +2,7 @@ package api
 
 import (
 	"git.liquidweb.com/masre/liquidweb-go/client"
-	networkzone "git.liquidweb.com/masre/liquidweb-go/networkzone"
+	networkzone "git.liquidweb.com/masre/liquidweb-go/network/zone"
 	stormconfig "git.liquidweb.com/masre/liquidweb-go/storm/config"
 	stormserver "git.liquidweb.com/masre/liquidweb-go/storm/server"
 )
