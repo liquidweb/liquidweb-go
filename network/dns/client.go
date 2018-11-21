@@ -10,6 +10,8 @@ type DNSRecordBackend interface {
 	Create(*network.DNSRecordParams) *network.DNSRecordItem
 	Details(int) *network.DNSRecordItem
 	List(*network.DNSRecordParams) *network.DNSRecordList
+	Update(*network.DNSRecordParams) *network.DNSRecordItem
+	Delete(*network.DNSRecordParams) *network.DNSRecordDeletion
 }
 
 // Client is the backend implementation for interacting with DNS Records.
@@ -41,4 +43,20 @@ func (c *Client) List(params *network.DNSRecordParams) *network.DNSRecordList {
 
 	c.Backend.CallInto("v1/Network/DNS/Record/list", params, list)
 	return list
+}
+
+// Update will update a DNS Record.
+func (c *Client) Update(params *network.DNSRecordParams) *network.DNSRecordItem {
+	var result *network.DNSRecordItem
+	c.Backend.CallInto("v1/Network/DNS/Record/update", params, result)
+
+	return result
+}
+
+// Delete will delete a DNS Record.
+func (c *Client) Delete(params *network.DNSRecordParams) *network.DNSRecordDeletion {
+	var result *network.DNSRecordDeletion
+	c.Backend.CallInto("v1/Network/DNS/Record/delete", params, result)
+
+	return result
 }
