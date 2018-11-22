@@ -7,7 +7,7 @@ import (
 
 // DNSRecordBackend describes the interface for interactions with the API.
 type DNSRecordBackend interface {
-	Create(*network.DNSRecordParams) *network.DNSRecordItem
+	Create(*network.DNSRecordParams) (*network.DNSRecordItem, error)
 	Details(int) *network.DNSRecordItem
 	List(*network.DNSRecordParams) *network.DNSRecordList
 	Update(*network.DNSRecordParams) *network.DNSRecordItem
@@ -20,11 +20,14 @@ type Client struct {
 }
 
 // Create creates a new DNS Record.
-func (c *Client) Create(params *network.DNSRecordParams) *network.DNSRecordItem {
-	var result *network.DNSRecordItem
-	c.Backend.CallInto("v1/Network/DNS/Record/create", params, result)
+func (c *Client) Create(params *network.DNSRecordParams) (*network.DNSRecordItem, error) {
+	var result network.DNSRecordItem
+	err := c.Backend.CallInto("v1/Network/DNS/Record/create", params, &result)
+	if err != nil {
+		return nil, err
+	}
 
-	return result
+	return &result, nil
 }
 
 // Details returns details about a DNS Record.
