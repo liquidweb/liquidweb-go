@@ -16,5 +16,6 @@ build:
   stage: build
   before_script:
     - apk add -U make
+    - cp -r $CI_PROJECT_DIR /go/src/git.liquidweb.com/masre/liquidweb-go
   script:
     - make build
