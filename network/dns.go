@@ -41,29 +41,29 @@ type RegionOverrides struct {
 
 // DNSRecord is the resource representing a DNS record entry.
 type DNSRecord struct {
-	ID              types.FlexInt    `json:"id"`
-	Name            string           `json:"name"`
-	Prio            types.FlexInt    `json:"prio"`
-	RData           string           `json:"rdata"`
-	TTL             types.FlexInt    `json:"ttl"`
-	Type            string           `json:"type"`
-	Zone            string           `json:"zone"`
-	ZoneID          types.FlexInt    `json:"zone_id"`
-	AdminEmail      string           `json:"adminEmail"`
-	Created         string           `json:"created"`
-	Exchange        string           `json:"exchange"`
-	Expiry          types.FlexInt    `json:"expiry"`
-	FullData        string           `json:"fullData"`
-	LastUpdated     string           `json:"last_updated"`
-	Minimum         types.FlexInt    `json:"minimum"`
-	Nameserver      string           `json:"nameserver"`
-	Port            types.FlexInt    `json:"port"`
-	RefreshInterval types.FlexInt    `json:"refreshInterval"`
-	RegionOverrides *RegionOverrides `json:"regionOverrides"`
-	Retry           types.FlexInt    `json:"retry"`
-	Serial          types.FlexInt    `json:"serial"`
-	Target          string           `json:"target"`
-	Weight          types.FlexInt    `json:"weight"`
+	ID              types.FlexInt    `json:"id,omitempty"`
+	Name            string           `json:"name,omitempty"`
+	Prio            types.FlexInt    `json:"prio,omitempty"`
+	RData           string           `json:"rdata,omitempty"`
+	TTL             types.FlexInt    `json:"ttl,omitempty"`
+	Type            string           `json:"type,omitempty"`
+	Zone            string           `json:"zone,omitempty"`
+	ZoneID          types.FlexInt    `json:"zone_id,omitempty"`
+	AdminEmail      string           `json:"adminEmail,omitempty"`
+	Created         string           `json:"created,omitempty"`
+	Exchange        string           `json:"exchange,omitempty"`
+	Expiry          types.FlexInt    `json:"expiry,omitempty"`
+	FullData        string           `json:"fullData,omitempty"`
+	LastUpdated     string           `json:"last_updated,omitempty"`
+	Minimum         types.FlexInt    `json:"minimum,omitempty"`
+	Nameserver      string           `json:"nameserver,omitempty"`
+	Port            types.FlexInt    `json:"port,omitempty"`
+	RefreshInterval types.FlexInt    `json:"refreshInterval,omitempty"`
+	RegionOverrides *RegionOverrides `json:"regionOverrides,omitempty"`
+	Retry           types.FlexInt    `json:"retry,omitempty"`
+	Serial          types.FlexInt    `json:"serial,omitempty"`
+	Target          string           `json:"target,omitempty"`
+	Weight          types.FlexInt    `json:"weight,omitempty"`
 }
 
 // DNSRecordList is an envelope for the API result containing either a list of DNS Records or an error.
