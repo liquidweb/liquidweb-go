@@ -1,32 +1,35 @@
 package network
 
-import "git.liquidweb.com/masre/liquidweb-go/client"
+import (
+	"git.liquidweb.com/masre/liquidweb-go/client"
+	"git.liquidweb.com/masre/liquidweb-go/types"
+)
 
 // DNSRecordParams is the set of parameters used when creating or updating a DNS record.
 type DNSRecordParams struct {
-	ID              int
-	Name            string
-	Prio            int
-	RData           string
-	TTL             int
-	Type            string
-	Zone            string
-	ZoneID          int
-	AdminEmail      string
-	Created         string
-	Exchange        string
-	Expiry          int
-	FullData        string
-	LastUpdated     string
-	Minimum         int
-	Nameserver      string
-	Port            int
-	RefreshInterval int
-	RegionOverrides RegionOverrides
-	Retry           int
-	Serial          int
-	Target          string
-	Weight          int
+	ID              int              `json:"id,omitempty"`
+	Name            string           `json:"name,omitempty"`
+	Prio            int              `json:"prio,omitempty"`
+	RData           string           `json:"rdata,omitempty"`
+	TTL             int              `json:"ttl,omitempty"`
+	Type            string           `json:"type,omitempty"`
+	Zone            string           `json:"zone,omitempty"`
+	ZoneID          int              `json:"zone_id,omitempty"`
+	AdminEmail      string           `json:"adminEmail,omitempty"`
+	Created         string           `json:"created,omitempty"`
+	Exchange        string           `json:"exchange,omitempty"`
+	Expiry          int              `json:"expiry,omitempty"`
+	FullData        string           `json:"fullData,omitempty"`
+	LastUpdated     string           `json:"last_updated,omitempty"`
+	Minimum         int              `json:"minimum,omitempty"`
+	Nameserver      string           `json:"nameserver,omitempty"`
+	Port            int              `json:"port,omitempty"`
+	RefreshInterval int              `json:"refreshInterval,omitempty"`
+	RegionOverrides *RegionOverrides `json:"regionOverrides,omitempty"`
+	Retry           int              `json:"retry,omitempty"`
+	Serial          int              `json:"serial,omitempty"`
+	Target          string           `json:"target,omitempty"`
+	Weight          int              `json:"weight,omitempty"`
 }
 
 // RegionOverrides contains region data.
@@ -38,29 +41,29 @@ type RegionOverrides struct {
 
 // DNSRecord is the resource representing a DNS record entry.
 type DNSRecord struct {
-	ID              int             `json:"id"`
-	Name            string          `json:"name"`
-	Prio            int             `json:"prio"`
-	RData           string          `json:"rdata"`
-	TTL             int             `json:"ttl"`
-	Type            string          `json:"type"`
-	Zone            string          `json:"zone"`
-	ZoneID          int             `json:"zone_id"`
-	AdminEmail      string          `json:"adminEmail"`
-	Created         string          `json:"created"`
-	Exchange        string          `json:"exchange"`
-	Expiry          int             `json:"expiry"`
-	FullData        string          `json:"fullData"`
-	LastUpdated     string          `json:"last_updated"`
-	Minimum         int             `json:"minimum"`
-	Nameserver      string          `json:"nameserver"`
-	Port            int             `json:"port"`
-	RefreshInterval int             `json:"refreshInterval"`
-	RegionOverrides RegionOverrides `json:"regionOverrides"`
-	Retry           int             `json:"retry"`
-	Serial          int             `json:"serial"`
-	Target          string          `json:"target"`
-	Weight          int             `json:"weight"`
+	ID              types.FlexInt    `json:"id"`
+	Name            string           `json:"name"`
+	Prio            types.FlexInt    `json:"prio"`
+	RData           string           `json:"rdata"`
+	TTL             types.FlexInt    `json:"ttl"`
+	Type            string           `json:"type"`
+	Zone            string           `json:"zone"`
+	ZoneID          types.FlexInt    `json:"zone_id"`
+	AdminEmail      string           `json:"adminEmail"`
+	Created         string           `json:"created"`
+	Exchange        string           `json:"exchange"`
+	Expiry          types.FlexInt    `json:"expiry"`
+	FullData        string           `json:"fullData"`
+	LastUpdated     string           `json:"last_updated"`
+	Minimum         types.FlexInt    `json:"minimum"`
+	Nameserver      string           `json:"nameserver"`
+	Port            types.FlexInt    `json:"port"`
+	RefreshInterval types.FlexInt    `json:"refreshInterval"`
+	RegionOverrides *RegionOverrides `json:"regionOverrides"`
+	Retry           types.FlexInt    `json:"retry"`
+	Serial          types.FlexInt    `json:"serial"`
+	Target          string           `json:"target"`
+	Weight          types.FlexInt    `json:"weight"`
 }
 
 // DNSRecordList is an envelope for the API result containing either a list of DNS Records or an error.
