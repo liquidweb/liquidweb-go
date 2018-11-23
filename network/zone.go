@@ -1,4 +1,4 @@
-package liquidweb
+package network
 
 import (
 	"git.liquidweb.com/masre/liquidweb-go/client"
