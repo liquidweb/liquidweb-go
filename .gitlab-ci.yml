@@ -14,5 +14,7 @@ build:
   tags:
     - docker-with-registry
   stage: build
+  before_script:
+    - apk add -U make
   script:
     - make build
