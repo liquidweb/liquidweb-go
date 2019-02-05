@@ -4,7 +4,7 @@ import (
 	"net"
 	"time"
 
-	"git.liquidweb.com/masre/liquidweb-go/client"
+	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 )
 
 // Server represents the underlying Storm VPS.
@@ -58,13 +58,13 @@ var ServerStates = []string{
 
 // ServerList is an envelope for the API result containing either a list of storm configs or an error.
 type ServerList struct {
-	client.LWAPIError
-	client.ListMeta
+	liquidweb.LWAPIError
+	liquidweb.ListMeta
 	Items []Server
 }
 
 // ServerItem is an envelope for the API result containing either a storm server or an error.
 type ServerItem struct {
-	*client.LWAPIError
+	*liquidweb.LWAPIError
 	Server
 }
