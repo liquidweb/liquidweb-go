@@ -7,8 +7,8 @@ import (
 // VIPBackend describes the interface for interactions with the API.
 type VIPBackend interface {
 	Create(VIPParams) (*VIPItem, error)
-	Destroy(VIPParams) *VIPDeletion
-	Details(VIPParams) *VIPItem
+	Destroy(string) *VIPDeletion
+	Details(string) *VIPItem
 }
 
 // VIPClient is the backend implementation for interacting with VIP.
@@ -17,7 +17,7 @@ type VIPClient struct {
 }
 
 // Create creates a new VIP.
-func (c *VIPClient) Create(params *VIPParams) (*VIPItem, error) {
+func (c *VIPClient) Create(params VIPParams) (*VIPItem, error) {
 	var result VIPItem
 	err := c.Backend.CallInto("v1/VIP/create", params, &result)
 	if err != nil {
@@ -37,9 +37,11 @@ func (c *VIPClient) Details(uniqID string) *VIPItem {
 	return &result
 }
 
-// Delete will delete a VIP.
-func (c *VIPClient) Delete(params *VIPParams) *VIPDeletion {
+// Destroy will delete a VIP.
+func (c *VIPClient) Destroy(uniqID string) *VIPDeletion {
 	var result VIPDeletion
+	params := VIPParams{UniqID: uniqID}
+
 	c.Backend.CallInto("v1/VIP/destroy", params, &result)
 
 	return &result

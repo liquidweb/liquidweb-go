@@ -8,8 +8,8 @@ import (
 type VIPParams struct {
 	Domain     string `json:"domain,omitempty"`
 	Zone       int    `json:"zone,omitempty"`
-	UniqID     string `json:"uniqID,omitempty"`
-	SubAccount string `json:"subaccount,omitempty"`
+	UniqID     string `json:"uniq_id,omitempty"`
+	SubAccount string `json:"subaccnt,omitempty"`
 }
 
 // VIP is the resource representing a VIP entry.
@@ -17,8 +17,9 @@ type VIP struct {
 	Domain       string `json:"domain,omitempty"`
 	Zone         int    `json:"zone,omitempty"`
 	Active       bool   `json:"active,omitempty"`
-	ActiveStatus string `json:"activestatus,omitempty"`
-	UniqID       string `json:"uniqID,omitempty"`
+	ActiveStatus string `json:"activeStatus,omitempty"`
+	UniqID       string `json:"uniq_id,omitempty"`
+	Destroyed    string `json:"destroyed,omitempty"`
 }
 
 // VIPItem is an envelope for the API result containing either a VIP or an error.
