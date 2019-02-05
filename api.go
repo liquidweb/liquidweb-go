@@ -2,18 +2,16 @@ package liquidweb
 
 import (
 	"git.liquidweb.com/masre/liquidweb-go/client"
-	networkdns "git.liquidweb.com/masre/liquidweb-go/network/dns"
-	networkzone "git.liquidweb.com/masre/liquidweb-go/network/zone"
-	stormconfig "git.liquidweb.com/masre/liquidweb-go/storm/config"
-	stormserver "git.liquidweb.com/masre/liquidweb-go/storm/server"
+	network "git.liquidweb.com/masre/liquidweb-go/network"
+	storm "git.liquidweb.com/masre/liquidweb-go/storm"
 )
 
 // API is the structure that houses all of our various API clients that interact with various Storm resources.
 type API struct {
-	NetworkDNS  networkdns.DNSRecordBackend
-	NetworkZone *networkzone.Client
-	StormConfig *stormconfig.Client
-	StormServer *stormserver.Client
+	NetworkDNS  network.DNSBackend
+	NetworkZone network.ZoneBackend
+	StormConfig storm.ConfigBackend
+	StormServer storm.ServerBackend
 }
 
 // NewAPI is the API client for interacting with Storm.
@@ -26,10 +24,10 @@ func NewAPI(username string, password string, url string, timeout int) (*API, er
 	// Initialize http backend
 	client := client.NewClient(config)
 	api := &API{
-		NetworkDNS:  &networkdns.Client{Backend: client},
-		NetworkZone: &networkzone.Client{Backend: client},
-		StormConfig: &stormconfig.Client{Backend: client},
-		StormServer: &stormserver.Client{Backend: client},
+		NetworkDNS:  &network.DNSClient{Backend: client},
+		NetworkZone: &network.ZoneClient{Backend: client},
+		StormConfig: &storm.ConfigClient{Backend: client},
+		StormServer: &storm.ServerClient{Backend: client},
 	}
 
 	return api, nil
