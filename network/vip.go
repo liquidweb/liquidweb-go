@@ -7,7 +7,7 @@ import (
 // VIPParams is the set of parameters used when creating or updating a VIP.
 type VIPParams struct {
 	Domain       string `json:"domain,omitempty"`
-	Zone         string `json:"zone,omitempty"`
+	Zone         int    `json:"zone,omitempty"`
 	Active       bool   `json:"active,omitempty"`
 	ActiveStatus string `json:"activestatus,omitempty"`
 	UniqID       string `json:"uniqID,omitempty"`
@@ -18,7 +18,7 @@ type VIPParams struct {
 // VIP is the resource representing a VIP entry.
 type VIP struct {
 	Domain       string `json:"domain,omitempty"`
-	Zone         string `json:"zone,omitempty"`
+	Zone         int    `json:"zone,omitempty"`
 	Active       bool   `json:"active,omitempty"`
 	ActiveStatus string `json:"activestatus,omitempty"`
 	UniqID       string `json:"uniqID,omitempty"`
