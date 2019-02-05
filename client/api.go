@@ -1,7 +1,6 @@
-package liquidweb
+package client
 
 import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
 	network "git.liquidweb.com/masre/liquidweb-go/network"
 	storm "git.liquidweb.com/masre/liquidweb-go/storm"
 )
@@ -16,13 +15,13 @@ type API struct {
 
 // NewAPI is the API client for interacting with Storm.
 func NewAPI(username string, password string, url string, timeout int) (*API, error) {
-	config, err := client.NewConfig(username, password, url, timeout, true)
+	config, err := NewConfig(username, password, url, timeout, true)
 	if err != nil {
 		return nil, err
 	}
 
 	// Initialize http backend
-	client := client.NewClient(config)
+	client := NewClient(config)
 	api := &API{
 		NetworkDNS:  &network.DNSClient{Backend: client},
 		NetworkZone: &network.ZoneClient{Backend: client},

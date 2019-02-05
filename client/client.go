@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+
+	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 )
 
 // Config is the configuration for the API client.
@@ -110,7 +112,7 @@ func (client *Client) Call(method string, params interface{}) (interface{}, erro
 	if ok {
 		errorClassStr := errorClass.(string)
 		if errorClassStr != "" {
-			return nil, LWAPIError{
+			return nil, liquidweb.LWAPIError{
 				ErrorClass:   errorClassStr,
 				ErrorFullMsg: mapDecodedResp["full_message"].(string),
 				ErrorMsg:     mapDecodedResp["error"].(string),
@@ -146,7 +148,7 @@ func (client *Client) Call(method string, params interface{}) (interface{}, erro
 //	}
 //	fmt.Printf("Got struct %#v\n", zone)
 //
-func (client *Client) CallInto(method string, params interface{}, into LWAPIRes) error {
+func (client *Client) CallInto(method string, params interface{}, into liquidweb.LWAPIRes) error {
 	bsRb, err := client.CallRaw(method, params)
 	if err != nil {
 		return err

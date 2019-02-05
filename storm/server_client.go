@@ -1,8 +1,6 @@
 package storm
 
-import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
-)
+import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 
 // ServerBackend is the interface for storm servers.
 type ServerBackend interface {
@@ -14,7 +12,7 @@ type ServerBackend interface {
 
 // ServerClient is the API client for storm servers.
 type ServerClient struct {
-	Backend *client.Client
+	Backend liquidweb.Backend
 }
 
 // List will fetch a list of storm servers.

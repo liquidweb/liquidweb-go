@@ -1,7 +1,7 @@
 package network
 
 import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
+	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
@@ -68,19 +68,19 @@ type DNSRecord struct {
 
 // DNSRecordList is an envelope for the API result containing either a list of DNS Records or an error.
 type DNSRecordList struct {
-	client.LWAPIError
-	client.ListMeta
+	liquidweb.LWAPIError
+	liquidweb.ListMeta
 	Items []DNSRecord `json:"items,omitempty"`
 }
 
 // DNSRecordItem is an envelope for the API result containing either a DNS Record or an error.
 type DNSRecordItem struct {
-	client.LWAPIError
+	liquidweb.LWAPIError
 	DNSRecord
 }
 
 // DNSRecordDeletion represents the API result when deleting a DNS Record.
 type DNSRecordDeletion struct {
-	client.LWAPIError
+	liquidweb.LWAPIError
 	Deleted int `json:"deleted"`
 }

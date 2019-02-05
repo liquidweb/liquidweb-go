@@ -1,7 +1,7 @@
 package network
 
 import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
+	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 )
 
 // DNSBackend describes the interface for interactions with the API.
@@ -15,7 +15,7 @@ type DNSBackend interface {
 
 // DNSClient is the backend implementation for interacting with DNS Records.
 type DNSClient struct {
-	Backend *client.Client
+	Backend liquidweb.Backend
 }
 
 // Create creates a new DNS Record.
