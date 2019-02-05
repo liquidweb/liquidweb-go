@@ -6,9 +6,9 @@ import (
 
 // VIPBackend describes the interface for interactions with the API.
 type VIPBackend interface {
-	Create(*VIPParams) (*VIPItem, error)
-	Destroy(*VIPParams) *VIPDeletion
-	Details(*VIPParams) *VIPItem
+	Create(VIPParams) (*VIPItem, error)
+	Destroy(VIPParams) *VIPDeletion
+	Details(VIPParams) *VIPItem
 }
 
 // VIPClient is the backend implementation for interacting with VIP.
