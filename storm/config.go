@@ -1,7 +1,7 @@
 package storm
 
 import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
+	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
@@ -21,14 +21,14 @@ type Config struct {
 
 // ConfigList is an envelope for the API result containing either a list of storm configs or an error.
 type ConfigList struct {
-	client.LWAPIError
-	client.ListMeta
+	liquidweb.LWAPIError
+	liquidweb.ListMeta
 	Items []Config
 }
 
 // ConfigItem is an envelope for the API result containing either a storm config or an error.
 type ConfigItem struct {
-	client.LWAPIError
+	liquidweb.LWAPIError
 	Config
 }
 

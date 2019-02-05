@@ -1,7 +1,8 @@
 package network
 
 import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
+	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+
 	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
@@ -34,13 +35,13 @@ type ZoneListParams struct {
 
 // ZoneList is an envelope for the API result containing either a list of zones or an error.
 type ZoneList struct {
-	client.LWAPIError
-	client.ListMeta
+	liquidweb.LWAPIError
+	liquidweb.ListMeta
 	Items []Zone `json:"items,omitempty"`
 }
 
 // ZoneItem is an envelope for the API result containing either a zones or an error.
 type ZoneItem struct {
-	client.LWAPIError
+	liquidweb.LWAPIError
 	Zone
 }

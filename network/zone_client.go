@@ -1,8 +1,6 @@
 package network
 
-import (
-	"git.liquidweb.com/masre/liquidweb-go/client"
-)
+import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 
 // ZoneBackend is the interface for network zones.
 type ZoneBackend interface {
@@ -12,7 +10,7 @@ type ZoneBackend interface {
 
 // ZoneClient is the API client for network zones.
 type ZoneClient struct {
-	Backend *client.Client
+	Backend liquidweb.Backend
 }
 
 // Details fetches the details for a zone.
