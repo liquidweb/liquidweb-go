@@ -2,6 +2,7 @@ package storage
 
 import (
 	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
 // Attachment represents the attachment details for a block volume.
@@ -26,14 +27,14 @@ type BlockVolumeParams struct {
 
 // BlockVolume is the resource representing a block volume.
 type BlockVolume struct {
-	AttachedTo       Attachment `json:"attachedTo,omitempty"`
-	CrossAttach      bool       `json:"cross_attach,omitempty"`
-	Domain           string     `json:"domain,omitempty"`
-	Label            string     `json:"label,omitempty"`
-	Size             int        `json:"size,omitempty"`
-	Status           string     `json:"status,omitempty"`
-	UniqID           string     `json:"uniq_id,omitempty"`
-	ZoneAvailability []int      `json:"zoneAvailability,omitempty"`
+	AttachedTo       []Attachment           `json:"attachedTo,omitempty"`
+	CrossAttach      types.NumericalBoolean `json:"cross_attach,omitempty"`
+	Domain           string                 `json:"domain,omitempty"`
+	Label            string                 `json:"label,omitempty"`
+	Size             types.FlexInt          `json:"size,omitempty"`
+	Status           string                 `json:"status,omitempty"`
+	UniqID           string                 `json:"uniq_id,omitempty"`
+	ZoneAvailability []types.FlexInt        `json:"zoneAvailability,omitempty"`
 }
 
 // BlockVolumeList is an envelope for the API result containing either a list of block volumes or an error.
