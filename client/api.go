@@ -10,6 +10,7 @@ import (
 type API struct {
 	StorageBlockVolume storage.BlockVolumeBackend
 	NetworkDNS         network.DNSBackend
+	NetworkVIP         network.VIPBackend
 	NetworkZone        network.ZoneBackend
 	StormConfig        storm.ConfigBackend
 	StormServer        storm.ServerBackend
@@ -26,6 +27,7 @@ func NewAPI(username string, password string, url string, timeout int) (*API, er
 	client := NewClient(config)
 	api := &API{
 		NetworkDNS:         &network.DNSClient{Backend: client},
+		NetworkVIP:         &network.VIPClient{Backend: client},
 		NetworkZone:        &network.ZoneClient{Backend: client},
 		StorageBlockVolume: &storage.BlockVolumeClient{Backend: client},
 		StormConfig:        &storm.ConfigClient{Backend: client},
