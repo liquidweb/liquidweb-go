@@ -11,6 +11,7 @@ type API struct {
 	NetworkZone network.ZoneBackend
 	StormConfig storm.ConfigBackend
 	StormServer storm.ServerBackend
+	NetworkVIP  network.VIPBackend
 }
 
 // NewAPI is the API client for interacting with Storm.
@@ -27,6 +28,7 @@ func NewAPI(username string, password string, url string, timeout int) (*API, er
 		NetworkZone: &network.ZoneClient{Backend: client},
 		StormConfig: &storm.ConfigClient{Backend: client},
 		StormServer: &storm.ServerClient{Backend: client},
+		NetworkVIP:  &network.VIPClient{Backend: client},
 	}
 
 	return api, nil
