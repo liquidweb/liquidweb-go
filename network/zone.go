@@ -16,6 +16,7 @@ type Zone struct {
 	ValidSourceHVS map[string]types.NumericalBoolean `json:"valid_source_hvs,omitempty"`
 }
 
+// ZoneRegion describes the zone the resources should be in.
 type ZoneRegion struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
