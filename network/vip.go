@@ -2,6 +2,7 @@ package network
 
 import (
 	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
 // VIPParams is the set of parameters used when creating or updating a VIP.
@@ -14,12 +15,13 @@ type VIPParams struct {
 
 // VIP is the resource representing a VIP entry.
 type VIP struct {
-	Domain       string `json:"domain,omitempty"`
-	Zone         int    `json:"zone,omitempty"`
-	Active       bool   `json:"active,omitempty"`
-	ActiveStatus string `json:"activeStatus,omitempty"`
-	UniqID       string `json:"uniq_id,omitempty"`
-	Destroyed    string `json:"destroyed,omitempty"`
+	Domain       string                 `json:"domain,omitempty"`
+	Zone         types.FlexInt          `json:"zone,omitempty"`
+	Active       types.NumericalBoolean `json:"active,omitempty"`
+	ActiveStatus string                 `json:"activeStatus,omitempty"`
+	UniqID       string                 `json:"uniq_id,omitempty"`
+	Destroyed    string                 `json:"destroyed,omitempty"`
+	IP           string                 `json:"ip,omitempty"`
 }
 
 // VIPItem is an envelope for the API result containing either a VIP or an error.
@@ -32,4 +34,41 @@ type VIPItem struct {
 type VIPDeletion struct {
 	liquidweb.LWAPIError
 	Destroyed string `json:"destroyed"`
+}
+
+// VIPNewStatus represents a VIP's status when new.
+const VIPNewStatus = "New"
+
+// VIPActiveStatus represents a VIP's status when active.
+const VIPActiveStatus = "Active"
+
+// VIPDisabledStatus represents a VIP's status when disabled.
+const VIPDisabledStatus = "Disabled"
+
+// VIPTerminatedStatus represents a VIP's status when terminated.
+const VIPTerminatedStatus = "Terminated"
+
+// VIPPendingTermination represents a VIP's status when termination is pending.
+const VIPPendingTermination = "Pending-Termination"
+
+// VIPPendingActivation represents a VIP's status when activation is pending.
+const VIPPendingActivation = "Pending-Activation"
+
+// VIPPendingPayment represents a VIP's status when payment is pending.
+const VIPPendingPayment = "Pending-Payment"
+
+// VIPBucketPart represents a VIP's status when termination is pending.
+const VIPBucketPart = "BucketPart"
+
+// VIPPendingConfig represents a VIP's status when configuration is pending.
+const VIPPendingConfig = "Pending-Config"
+
+// PendingStatuses is an array of strings representing the different statuses a
+// VIP can be in before it is active.
+var PendingStatuses = []string{
+	VIPNewStatus,
+	VIPPendingTermination,
+	VIPPendingActivation,
+	VIPPendingPayment,
+	VIPPendingConfig,
 }
