@@ -11,6 +11,7 @@ type BlockVolumeBackend interface {
 	List(*BlockVolumeParams) *BlockVolumeList
 	Update(*BlockVolumeParams) *BlockVolumeItem
 	Delete(*BlockVolumeParams) *BlockVolumeDeletion
+	Resize(*BlockVolumeParams) *BlockVolumeResize
 }
 
 // BlockVolumeClient is the backend implementation for interacting with block volumes.
@@ -59,6 +60,14 @@ func (c *BlockVolumeClient) Update(params *BlockVolumeParams) *BlockVolumeItem {
 func (c *BlockVolumeClient) Delete(params *BlockVolumeParams) *BlockVolumeDeletion {
 	var result BlockVolumeDeletion
 	c.Backend.CallInto("v1/Storage/Block/Volume/delete", params, &result)
+
+	return &result
+}
+
+// Resize will resize a block volume.
+func (c *BlockVolumeClient) Resize(params *BlockVolumeParams) *BlockVolumeResize {
+	var result BlockVolumeResize
+	c.Backend.CallInto("v1/Storage/Block/Volume/resize", params, &result)
 
 	return &result
 }

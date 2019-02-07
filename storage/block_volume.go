@@ -17,6 +17,7 @@ type BlockVolumeParams struct {
 	CrossAttach bool   `json:"cross_attach,omitempty"`
 	DetachFrom  string `json:"detach_from,omitempty"`
 	Domain      string `json:"domain,omitempty"`
+	NewSize     int    `json:"new_size,omitempty"`
 	Region      int    `json:"region,omitempty"`
 	Size        int    `json:"size,omitempty"`
 	To          string `json:"to,omitempty"`
@@ -54,4 +55,12 @@ type BlockVolumeItem struct {
 type BlockVolumeDeletion struct {
 	liquidweb.LWAPIError
 	Deleted int `json:"deleted"`
+}
+
+// BlockVolumeResize represents the API result when resizing a block volume.
+type BlockVolumeResize struct {
+	liquidweb.LWAPIError
+	NewSize types.FlexInt `json:"new_size,omitempty"`
+	OldSize types.FlexInt `json:"old_size,omitempty"`
+	UniqID  string        `json:"uniq_id,omitempty"`
 }
