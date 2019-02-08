@@ -7,11 +7,12 @@ import (
 
 // API is the structure that houses all of our various API clients that interact with various Storm resources.
 type API struct {
-	NetworkDNS  network.DNSBackend
-	NetworkZone network.ZoneBackend
-	StormConfig storm.ConfigBackend
-	StormServer storm.ServerBackend
-	NetworkVIP  network.VIPBackend
+	NetworkDNS          network.DNSBackend
+	NetworkLoadBalancer network.LoadBalancerBackend
+	NetworkVIP          network.VIPBackend
+	NetworkZone         network.ZoneBackend
+	StormConfig         storm.ConfigBackend
+	StormServer         storm.ServerBackend
 }
 
 // NewAPI is the API client for interacting with Storm.
@@ -24,11 +25,12 @@ func NewAPI(username string, password string, url string, timeout int) (*API, er
 	// Initialize http backend
 	client := NewClient(config)
 	api := &API{
-		NetworkDNS:  &network.DNSClient{Backend: client},
-		NetworkZone: &network.ZoneClient{Backend: client},
-		StormConfig: &storm.ConfigClient{Backend: client},
-		StormServer: &storm.ServerClient{Backend: client},
-		NetworkVIP:  &network.VIPClient{Backend: client},
+		NetworkDNS:          &network.DNSClient{Backend: client},
+		NetworkZone:         &network.ZoneClient{Backend: client},
+		StormConfig:         &storm.ConfigClient{Backend: client},
+		StormServer:         &storm.ServerClient{Backend: client},
+		NetworkLoadBalancer: &network.LoadBalancerClient{Backend: client},
+		NetworkVIP:          &network.VIPClient{Backend: client},
 	}
 
 	return api, nil
