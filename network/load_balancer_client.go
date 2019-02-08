@@ -7,8 +7,9 @@ import (
 // LoadBalancerBackend describes the interface for interactions with the API.
 type LoadBalancerBackend interface {
 	Create(LoadBalancerParams) (*LoadBalancerItem, error)
-	Delete(string) *LoadBalancerDeletion
 	Details(string) *LoadBalancerItem
+	Update(LoadBalancerParams) *LoadBalancerItem
+	Delete(string) *LoadBalancerDeletion
 }
 
 // LoadBalancerClient is the backend implementation for interacting with the API.
@@ -33,6 +34,14 @@ func (c *LoadBalancerClient) Details(uniqID string) *LoadBalancerItem {
 	params := LoadBalancerParams{UniqID: uniqID}
 
 	c.Backend.CallInto("v1/Network/LoadBalancer/details", params, &result)
+
+	return &result
+}
+
+// Update will update a load balancer.
+func (c *LoadBalancerClient) Update(params LoadBalancerParams) *LoadBalancerItem {
+	var result LoadBalancerItem
+	c.Backend.CallInto("v1/Network/LoadBalancer/update", params, &result)
 
 	return &result
 }
