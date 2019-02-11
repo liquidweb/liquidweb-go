@@ -40,7 +40,7 @@ type LoadBalancerService struct {
 type LoadBalancerParams struct {
 	UniqID             string                      `json:"uniq_id,omitempty"`
 	Name               string                      `json:"name,omitempty"`
-	Nodes              []LoadBalancerNodeParams    `json:"nodes,omitempty"`
+	Nodes              []string                    `json:"nodes,omitempty"`
 	Region             int                         `json:"region,omitempty"`
 	Services           []LoadBalancerServiceParams `json:"services,omitempty"`
 	SessionPersistence bool                        `json:"session_persistence,omitempty"`
