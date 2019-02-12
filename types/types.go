@@ -2,6 +2,7 @@ package types
 
 import (
 	"encoding/json"
+	"net"
 	"strconv"
 )
 
@@ -47,4 +48,31 @@ func (fi *FlexInt) UnmarshalJSON(b []byte) error {
 	}
 	*fi = FlexInt(i)
 	return nil
+}
+
+// IPAddr uses net.IP but supports Marshal/Unmarshal.
+type IPAddr struct {
+	net.IP
+}
+
+// String returns a string representation of the IP.
+func (ip *IPAddr) String() string {
+	return ip.IP.String()
+}
+
+// UnmarshalJSON unmarshals the IPAddr type.
+func (ip *IPAddr) UnmarshalJSON(b []byte) error {
+	var astr string
+	if err := json.Unmarshal(b, &astr); err != nil {
+		return err
+	}
+
+	ip.IP = net.ParseIP(astr)
+
+	return nil
+}
+
+// MarshalJSON marshalls the IPAddr type.
+func (ip *IPAddr) MarshalJSON() ([]byte, error) {
+	return []byte(ip.IP.String()), nil
 }
