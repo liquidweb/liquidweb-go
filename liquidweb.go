@@ -29,6 +29,12 @@ type ListMeta struct {
 	PageTotal types.FlexInt `json:"page_total,omitempty"`
 }
 
+// PageParams support pagination parameters in parameter types.
+type PageParams struct {
+	PageNum  types.FlexInt `json:"page_num,omitempty"`
+	PageSize types.FlexInt `json:"page_size,omitempty"`
+}
+
 // A LWAPIError is used to identify error responses when JSON unmarshalling json from a
 // byte slice.
 type LWAPIError struct {
