@@ -63,7 +63,7 @@ type LoadBalancer struct {
 	SSLTermination     types.NumericalBoolean `json:"ssl_termination,omitempty"`
 	Strategy           string                 `json:"ip,omitempty"`
 	UniqID             string                 `json:"uniq_id,omitempty"`
-	VIP                net.IP                 `json:"vip,omitempty"`
+	VIP                string                 `json:"vip,omitempty"`
 }
 
 // LoadBalancerItem is an envelope for the API result containing either a load balancer or an error.

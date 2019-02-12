@@ -51,7 +51,7 @@ func (c *LoadBalancerClient) Delete(uniqID string) *LoadBalancerDeletion {
 	var result LoadBalancerDeletion
 	params := LoadBalancerParams{UniqID: uniqID}
 
-	c.Backend.CallInto("v1/Network/LoadBalancer/destroy", params, &result)
+	c.Backend.CallInto("v1/Network/LoadBalancer/delete", params, &result)
 
 	return &result
 }
