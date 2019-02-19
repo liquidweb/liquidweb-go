@@ -16,7 +16,6 @@ type VIPParams struct {
 // VIP is the resource representing a VIP entry.
 type VIP struct {
 	Domain       string                 `json:"domain,omitempty"`
-	Zone         types.FlexInt          `json:"zone,omitempty"`
 	Active       types.NumericalBoolean `json:"active,omitempty"`
 	ActiveStatus string                 `json:"activeStatus,omitempty"`
 	UniqID       string                 `json:"uniq_id,omitempty"`
