@@ -113,7 +113,7 @@ func (t *Timestamp) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// MarshalJSON marshalls the IPAddr type.
+// MarshalJSON marshalls the Timestamp type.
 func (t *Timestamp) MarshalJSON() ([]byte, error) {
 	return []byte(`"` + t.Format(LWTimestampFormat) + `"`), nil
 }
