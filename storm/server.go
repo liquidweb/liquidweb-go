@@ -37,7 +37,7 @@ type ServerParams struct {
 
 // Server represents the underlying Storm VPS.
 type Server struct {
-	ACCNT               string          `json:"accnt,omitempty"`
+	ACCNT               types.FlexInt   `json:"accnt,omitempty"`
 	Active              types.FlexInt   `json:"active,omitempty"`
 	BackupEnabled       types.FlexInt   `json:"backup_enabled,omitempty"`
 	BackupPlan          string          `json:"backup_plan,omitempty"`
