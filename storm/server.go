@@ -41,7 +41,7 @@ type Server struct {
 	BackupPlan          string        `json:"backup_plan,omitempty"`
 	BackupQuota         string        `json:"backup_quota,omitempty"`
 	BackupSize          float64       `json:"backup_size,omitempty"`
-	BandwidthQuota      types.FlexInt `json:"bandwidth_quota,omitempty"`
+	BandwidthQuota      string        `json:"bandwidth_quota,omitempty"`
 	ConfigDescription   string        `json:"config_description,omitempty"`
 	ConfigID            types.FlexInt `json:"config_id,omitempty"`
 	CreateDate          time.Time     `json:"create_date,omitempty"`
