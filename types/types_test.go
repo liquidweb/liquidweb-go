@@ -19,7 +19,7 @@ func TestMarshal(t *testing.T) {
 	}
 }
 
-func TestUnMarshal(t *testing.T) {
+func TestUnmarshal(t *testing.T) {
 	tsJSON := []byte(`"2009-09-09 11:12:13"`)
 	var ts Timestamp
 

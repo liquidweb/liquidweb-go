@@ -1,7 +1,10 @@
 package storm
 
 import (
+	"encoding/json"
+	"errors"
 	"net"
+	"strconv"
 
 	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 	"git.liquidweb.com/masre/liquidweb-go/types"
@@ -55,7 +58,38 @@ type Server struct {
 	Type                string          `json:"type,omitempty"`
 	UniqID              string          `json:"uniq_id,omitempty"`
 	VCPU                types.FlexInt   `json:"vcpu,omitempty"`
-	Zone                types.FlexInt   `json:"zone,omitempty"`
+	Zone                ServerZone      `json:"zone,omitempty"`
+}
+
+// ServerZone represents a numerical representation of the zone data.
+// Normally, it is nested object like network.Zone
+type ServerZone types.FlexInt
+
+func (sz *ServerZone) String() string {
+	return strconv.Itoa(int(*sz))
+}
+
+// UnmarshalJSON parses Liquid Web's structured zone data.
+func (sz *ServerZone) UnmarshalJSON(b []byte) error {
+	data := make(map[string]interface{})
+	err := json.Unmarshal(b, &data)
+	if err != nil {
+		return err
+	}
+
+	zid, ok := data["id"].(float64)
+	if !ok {
+		return errors.New("zone id (id) not present")
+	}
+
+	*sz = ServerZone(types.FlexInt(zid))
+
+	return nil
+}
+
+// MarshalJSON marshalls the ServerZone type.
+func (sz *ServerZone) MarshalJSON() ([]byte, error) {
+	return []byte(sz.String()), nil
 }
 
 // ServerStatus represents status of a Storm Server.
