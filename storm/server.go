@@ -147,6 +147,6 @@ type ServerList struct {
 
 // ServerItem is an envelope for the API result containing either a storm server or an error.
 type ServerItem struct {
-	*liquidweb.LWAPIError
+	liquidweb.LWAPIError
 	Server
 }
