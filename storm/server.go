@@ -5,32 +5,74 @@ import (
 	"time"
 
 	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+	"git.liquidweb.com/masre/liquidweb-go/types"
 )
+
+// ServerParams is the set of parameters used when creating or updating a Storm Server.
+type ServerParams struct {
+	UniqID        string `json:"uniq_id,omitempty"`
+	BackupEnabled bool   `json:"backup_enabled,omitempty"`
+	BackupID      int    `json:"backup_id,omitempty"`
+	BackupPlan    string `json:"backup_plan,omitempty"`
+	BackupQuota   int    `json:"backup_quota,omitempty"`
+	ConfigID      int    `json:"config_id,omitempty"`
+	Domain        string `json:"domain,omitempty"`
+	ImageID       int    `json:"image_id,omitempty"`
+	IPCount       int    `json:"ip_count,omitempty"`
+	MSSQL         string `json:"ms_sql,omitempty"`
+	Password      string `json:"password,omitempty"`
+	PublicSSHKey  string `json:"public_ssh_key,omitempty"`
+	Template      string `json:"template,omitempty"`
+	Zone          int    `json:"backup_quota,omitempty"`
+}
 
 // Server represents the underlying Storm VPS.
 type Server struct {
-	ACCNT               string
-	Active              bool
-	BackupEnabled       bool
-	BackupPlan          string
-	BackupQuota         int
-	BackupSize          float64
-	BandwidthQuota      int
-	ConfigDescription   string
-	ConfigID            int
-	CreateDate          time.Time
-	DiskSpace           int
-	Domain              string
-	IP                  net.IP
-	IPCount             int
-	ManageLevel         string
-	Memory              int
-	Template            string
-	TemplateDescription string
-	Type                string
-	UniqID              string
-	VCPU                int
-	Zone                int
+	ACCNT               string    `json:"accnt,omitempty"`
+	Active              bool      `json:"active,omitempty"`
+	BackupEnabled       bool      `json:"backup_enabled,omitempty"`
+	BackupPlan          string    `json:"backup_plan,omitempty"`
+	BackupQuota         int       `json:"backup_quota,omitempty"`
+	BackupSize          float64   `json:"backup_size,omitempty"`
+	BandwidthQuota      int       `json:"bandwidth_quota,omitempty"`
+	ConfigDescription   string    `json:"config_description,omitempty"`
+	ConfigID            int       `json:"config_id,omitempty"`
+	CreateDate          time.Time `json:"create_date,omitempty"`
+	DiskSpace           int       `json:"disk_space,omitempty"`
+	Domain              string    `json:"domain,omitempty"`
+	IP                  net.IP    `json:"ip,omitempty"`
+	IPCount             int       `json:"ip_count,omitempty"`
+	ManageLevel         string    `json:"manage_level,omitempty"`
+	Memory              int       `json:"memory,omitempty"`
+	Template            string    `json:"template,omitempty"`
+	TemplateDescription string    `json:"template_description,omitempty"`
+	Type                string    `json:"type,omitempty"`
+	UniqID              string    `json:"uniq_id,omitempty"`
+	VCPU                int       `json:"vcpu,omitempty"`
+	Zone                int       `json:"zone,omitempty"`
+}
+
+// ServerStatus represents status of a Storm Server.
+type ServerStatus struct {
+	liquidweb.LWAPIError
+	DetailedStatus string              `json:"detailed_status,omitempty"`
+	Progress       types.FlexInt       `json:"progress,omitempty"`
+	Running        ServerRunningStatus `json:"running,omitempty"`
+	Status         string              `json:"status,omitempty"`
+}
+
+// ServerRunningStatus represents a detailed status step of a Storm Server.
+type ServerRunningStatus struct {
+	CurrentStep    string `json:"current_step,omitempty"`
+	DetailedStatus string `json:"detailed_status,omitempty"`
+	Name           string `json:"name,omitempty"`
+	Status         string `json:"status,omitempty"`
+}
+
+// ServerDeletion represents the API result when deleting a Storm Server.
+type ServerDeletion struct {
+	liquidweb.LWAPIError
+	Destroyed string `json:"destroyed"`
 }
 
 // ServerStates represents the various states the server can be in.
