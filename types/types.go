@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net"
 	"strconv"
+	"time"
 )
 
 // NumericalBoolean handles booleans in the API being returned as
@@ -75,4 +76,31 @@ func (ip *IPAddr) UnmarshalJSON(b []byte) error {
 // MarshalJSON marshalls the IPAddr type.
 func (ip *IPAddr) MarshalJSON() ([]byte, error) {
 	return []byte(ip.IP.String()), nil
+}
+
+// Timestamp implements Liquid Web's custom timestamp format.
+type Timestamp struct {
+	time.Time
+}
+
+// LWTimestampFormat is Liquid Web's timestamp format.
+const LWTimestampFormat = "2006-01-02 15:04:05"
+
+// UnmarshalJSON parses Liquid Web's timestamp format.
+func (t *Timestamp) UnmarshalJSON(b []byte) error {
+	ts, err := time.Parse(LWTimestampFormat, string(b))
+	if err != nil {
+		return err
+	}
+	*t = Timestamp(ts)
+	return nil
+}
+
+// MarshalJSON marshalls the IPAddr type.
+func (t *Timestamp) MarshalJSON() ([]byte, error) {
+	ts, err := time.Parse(LWTimestampFormat, t.String())
+	if err != nil {
+		return nil, err
+	}
+	return []byte(ts.String()), nil
 }
