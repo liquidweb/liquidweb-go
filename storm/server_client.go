@@ -4,6 +4,7 @@ import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 
 // ServerBackend is the interface for storm servers.
 type ServerBackend interface {
+	Create(ServerParams) (*ServerItem, error)
 	List(ServerListParams) (*ServerList, error)
 	Details(ServerParams) (*ServerItem, error)
 	Update(ServerParams) (*ServerItem, error)
