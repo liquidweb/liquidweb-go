@@ -42,8 +42,9 @@ func (c *ServerClient) Create(params ServerParams) (*ServerItem, error) {
 // Details fetches the details for a storm server.
 func (c *ServerClient) Details(id string) (*ServerItem, error) {
 	var result ServerItem
+	params := ServerParams{UniqID: id}
 
-	err := c.Backend.CallInto("v1/Storm/Server/details", id, &result)
+	err := c.Backend.CallInto("v1/Storm/Server/details", params, &result)
 	if err != nil {
 		return nil, err
 	}
