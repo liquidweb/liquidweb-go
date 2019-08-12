@@ -4,10 +4,11 @@ import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 
 // ServerBackend is the interface for storm servers.
 type ServerBackend interface {
-	List() *ServerItem
-	Details() *ServerItem
-	Update() *ServerItem
-	Destroy(string) *ServerItem
+	List(ServerListParams) (*ServerList, error)
+	Details(ServerParams) (*ServerItem, error)
+	Update(ServerParams) (*ServerItem, error)
+	Destroy(string) (*ServerDeletion, error)
+	Status(string) (*ServerStatus, error)
 }
 
 // ServerClient is the API client for storm servers.
@@ -16,8 +17,14 @@ type ServerClient struct {
 }
 
 // List will fetch a list of storm servers.
-func (c *ServerClient) List() *ServerItem {
-	return &ServerItem{}
+func (c *ServerClient) List(params ServerListParams) (*ServerList, error) {
+	var result ServerList
+	err := c.Backend.CallInto("v1/Storm/Server/list", params, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
 }
 
 // Create a new storm server.
