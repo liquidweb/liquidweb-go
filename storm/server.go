@@ -21,7 +21,7 @@ type ServerParams struct {
 	BackupID       int    `json:"backup_id,omitempty"`
 	BackupPlan     string `json:"backup_plan,omitempty"`
 	BackupQuota    int    `json:"backup_quota,omitempty"`
-	BandwidthQuota int    `json:"bandwidth_quota,omitempty"`
+	BandwidthQuota string `json:"bandwidth_quota,omitempty"`
 	ConfigID       int    `json:"config_id,omitempty"`
 	Domain         string `json:"domain,omitempty"`
 	ImageID        int    `json:"image_id,omitempty"`
