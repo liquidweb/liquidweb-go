@@ -6,7 +6,7 @@ import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 type ServerBackend interface {
 	Create(ServerParams) (*ServerItem, error)
 	List(ServerListParams) (*ServerList, error)
-	Details(ServerParams) (*ServerItem, error)
+	Details(string) (*ServerItem, error)
 	Update(ServerParams) (*ServerItem, error)
 	Destroy(string) (*ServerDeletion, error)
 	Status(string) (*ServerStatus, error)
@@ -40,10 +40,10 @@ func (c *ServerClient) Create(params ServerParams) (*ServerItem, error) {
 }
 
 // Details fetches the details for a storm server.
-func (c *ServerClient) Details(params ServerParams) (*ServerItem, error) {
+func (c *ServerClient) Details(id string) (*ServerItem, error) {
 	var result ServerItem
 
-	err := c.Backend.CallInto("v1/Storm/Server/details", params, &result)
+	err := c.Backend.CallInto("v1/Storm/Server/details", id, &result)
 	if err != nil {
 		return nil, err
 	}
