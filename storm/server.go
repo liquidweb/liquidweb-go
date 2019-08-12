@@ -16,20 +16,21 @@ type ServerListParams struct {
 
 // ServerParams is the set of parameters used when creating or updating a Storm Server.
 type ServerParams struct {
-	UniqID        string `json:"uniq_id,omitempty"`
-	BackupEnabled int    `json:"backup_enabled,omitempty"`
-	BackupID      int    `json:"backup_id,omitempty"`
-	BackupPlan    string `json:"backup_plan,omitempty"`
-	BackupQuota   int    `json:"backup_quota,omitempty"`
-	ConfigID      int    `json:"config_id,omitempty"`
-	Domain        string `json:"domain,omitempty"`
-	ImageID       int    `json:"image_id,omitempty"`
-	IPCount       int    `json:"ip_count,omitempty"`
-	MSSQL         string `json:"ms_sql,omitempty"`
-	Password      string `json:"password,omitempty"`
-	PublicSSHKey  string `json:"public_ssh_key,omitempty"`
-	Template      string `json:"template,omitempty"`
-	Zone          int    `json:"backup_quota,omitempty"`
+	UniqID         string `json:"uniq_id,omitempty"`
+	BackupEnabled  int    `json:"backup_enabled,omitempty"`
+	BackupID       int    `json:"backup_id,omitempty"`
+	BackupPlan     string `json:"backup_plan,omitempty"`
+	BackupQuota    int    `json:"backup_quota,omitempty"`
+	BandwidthQuota int    `json:"bandwidth_quota,omitempty"`
+	ConfigID       int    `json:"config_id,omitempty"`
+	Domain         string `json:"domain,omitempty"`
+	ImageID        int    `json:"image_id,omitempty"`
+	IPCount        int    `json:"ip_count,omitempty"`
+	MSSQL          string `json:"ms_sql,omitempty"`
+	Password       string `json:"password,omitempty"`
+	PublicSSHKey   string `json:"public_ssh_key,omitempty"`
+	Template       string `json:"template,omitempty"`
+	Zone           int    `json:"zone,omitempty"`
 }
 
 // Server represents the underlying Storm VPS.
