@@ -86,21 +86,39 @@ type Timestamp struct {
 // LWTimestampFormat is Liquid Web's timestamp format.
 const LWTimestampFormat = "2006-01-02 15:04:05"
 
+// NewTimestamp accepts a string and returns a new Timestamp.
+func NewTimestamp(s string) (*Timestamp, error) {
+	ts, err := time.Parse(LWTimestampFormat, s)
+	if err != nil {
+		return nil, err
+	}
+
+	t := &Timestamp{ts}
+	return t, nil
+}
+
 // UnmarshalJSON parses Liquid Web's timestamp format.
 func (t *Timestamp) UnmarshalJSON(b []byte) error {
-	ts, err := time.Parse(LWTimestampFormat, string(b))
+	var tsString string
+	err := json.Unmarshal(b, &tsString)
 	if err != nil {
 		return err
 	}
-	*t = Timestamp(ts)
+
+	ts, err := time.Parse(LWTimestampFormat, tsString)
+	if err != nil {
+		return err
+	}
+	t.Time = ts
 	return nil
 }
 
 // MarshalJSON marshalls the IPAddr type.
 func (t *Timestamp) MarshalJSON() ([]byte, error) {
-	ts, err := time.Parse(LWTimestampFormat, t.String())
-	if err != nil {
-		return nil, err
-	}
-	return []byte(ts.String()), nil
+	return []byte(`"` + t.Format(LWTimestampFormat) + `"`), nil
+}
+
+// String returns the Timestamp in Liquid Web's timestamp format.
+func (t *Timestamp) String() string {
+	return t.Format(LWTimestampFormat)
 }

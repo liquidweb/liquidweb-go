@@ -2,7 +2,6 @@ package storm
 
 import (
 	"net"
-	"time"
 
 	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 	"git.liquidweb.com/masre/liquidweb-go/types"
@@ -35,28 +34,28 @@ type ServerParams struct {
 
 // Server represents the underlying Storm VPS.
 type Server struct {
-	ACCNT               string        `json:"accnt,omitempty"`
-	Active              types.FlexInt `json:"active,omitempty"`
-	BackupEnabled       types.FlexInt `json:"backup_enabled,omitempty"`
-	BackupPlan          string        `json:"backup_plan,omitempty"`
-	BackupQuota         string        `json:"backup_quota,omitempty"`
-	BackupSize          float64       `json:"backup_size,omitempty"`
-	BandwidthQuota      string        `json:"bandwidth_quota,omitempty"`
-	ConfigDescription   string        `json:"config_description,omitempty"`
-	ConfigID            types.FlexInt `json:"config_id,omitempty"`
-	CreateDate          time.Time     `json:"create_date,omitempty"`
-	DiskSpace           types.FlexInt `json:"disk_space,omitempty"`
-	Domain              string        `json:"domain,omitempty"`
-	IP                  net.IP        `json:"ip,omitempty"`
-	IPCount             types.FlexInt `json:"ip_count,omitempty"`
-	ManageLevel         string        `json:"manage_level,omitempty"`
-	Memory              types.FlexInt `json:"memory,omitempty"`
-	Template            string        `json:"template,omitempty"`
-	TemplateDescription string        `json:"template_description,omitempty"`
-	Type                string        `json:"type,omitempty"`
-	UniqID              string        `json:"uniq_id,omitempty"`
-	VCPU                types.FlexInt `json:"vcpu,omitempty"`
-	Zone                types.FlexInt `json:"zone,omitempty"`
+	ACCNT               string          `json:"accnt,omitempty"`
+	Active              types.FlexInt   `json:"active,omitempty"`
+	BackupEnabled       types.FlexInt   `json:"backup_enabled,omitempty"`
+	BackupPlan          string          `json:"backup_plan,omitempty"`
+	BackupQuota         string          `json:"backup_quota,omitempty"`
+	BackupSize          float64         `json:"backup_size,omitempty"`
+	BandwidthQuota      string          `json:"bandwidth_quota,omitempty"`
+	ConfigDescription   string          `json:"config_description,omitempty"`
+	ConfigID            types.FlexInt   `json:"config_id,omitempty"`
+	CreateDate          types.Timestamp `json:"create_date,omitempty"`
+	DiskSpace           types.FlexInt   `json:"disk_space,omitempty"`
+	Domain              string          `json:"domain,omitempty"`
+	IP                  net.IP          `json:"ip,omitempty"`
+	IPCount             types.FlexInt   `json:"ip_count,omitempty"`
+	ManageLevel         string          `json:"manage_level,omitempty"`
+	Memory              types.FlexInt   `json:"memory,omitempty"`
+	Template            string          `json:"template,omitempty"`
+	TemplateDescription string          `json:"template_description,omitempty"`
+	Type                string          `json:"type,omitempty"`
+	UniqID              string          `json:"uniq_id,omitempty"`
+	VCPU                types.FlexInt   `json:"vcpu,omitempty"`
+	Zone                types.FlexInt   `json:"zone,omitempty"`
 }
 
 // ServerStatus represents status of a Storm Server.
