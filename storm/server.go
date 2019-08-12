@@ -38,7 +38,7 @@ type Server struct {
 	Active              types.FlexInt   `json:"active,omitempty"`
 	BackupEnabled       types.FlexInt   `json:"backup_enabled,omitempty"`
 	BackupPlan          string          `json:"backup_plan,omitempty"`
-	BackupQuota         string          `json:"backup_quota,omitempty"`
+	BackupQuota         types.FlexInt   `json:"backup_quota,omitempty"`
 	BackupSize          float64         `json:"backup_size,omitempty"`
 	BandwidthQuota      string          `json:"bandwidth_quota,omitempty"`
 	ConfigDescription   string          `json:"config_description,omitempty"`
