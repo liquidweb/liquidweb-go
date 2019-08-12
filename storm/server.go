@@ -17,7 +17,7 @@ type ServerListParams struct {
 // ServerParams is the set of parameters used when creating or updating a Storm Server.
 type ServerParams struct {
 	UniqID        string `json:"uniq_id,omitempty"`
-	BackupEnabled bool   `json:"backup_enabled,omitempty"`
+	BackupEnabled int    `json:"backup_enabled,omitempty"`
 	BackupID      int    `json:"backup_id,omitempty"`
 	BackupPlan    string `json:"backup_plan,omitempty"`
 	BackupQuota   int    `json:"backup_quota,omitempty"`
