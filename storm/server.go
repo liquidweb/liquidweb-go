@@ -134,6 +134,7 @@ var ServerStates = []string{
 	"Adding IPs",
 	"Removing IP",
 	"Destroying",
+	"Shutdown", // Undocumented
 }
 
 // ServerList is an envelope for the API result containing either a list of storm configs or an error.
