@@ -46,7 +46,7 @@ type BlockVolumeList struct {
 
 // BlockVolumeDeletion represents the API result when deleting a block volume.
 type BlockVolumeDeletion struct {
-	Deleted int `json:"deleted"`
+	Deleted types.FlexInt `json:"deleted"`
 }
 
 // BlockVolumeResize represents the API result when resizing a block volume.
