@@ -10,7 +10,7 @@ type BlockVolumeBackend interface {
 	Details(string) (*BlockVolume, error)
 	List(*BlockVolumeParams) (*BlockVolumeList, error)
 	Update(*BlockVolumeParams) (*BlockVolume, error)
-	Delete(*BlockVolumeParams) (*BlockVolumeDeletion, error)
+	Delete(string) (*BlockVolumeDeletion, error)
 	Resize(*BlockVolumeParams) (*BlockVolumeResize, error)
 }
 
@@ -64,8 +64,10 @@ func (c *BlockVolumeClient) Update(params *BlockVolumeParams) (*BlockVolume, err
 }
 
 // Delete will delete a block volume.
-func (c *BlockVolumeClient) Delete(params *BlockVolumeParams) (*BlockVolumeDeletion, error) {
+func (c *BlockVolumeClient) Delete(id string) (*BlockVolumeDeletion, error) {
 	var result BlockVolumeDeletion
+	params := BlockVolumeParams{UniqID: id}
+
 	err := c.Backend.Call("v1/Storage/Block/Volume/delete", params, &result)
 	if err != nil {
 		return nil, err
