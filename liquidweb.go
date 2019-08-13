@@ -12,7 +12,7 @@ type Backend interface {
 	CallRaw(string, interface{}) ([]byte, error)
 }
 
-// LWAPIRes is a convenient interface used (for example) by CallInto to ensure a passed
+// LWAPIRes is a convenient interface used (for example) by Call to ensure a passed
 // struct knows how to indicate whether or not it had an error.
 type LWAPIRes interface {
 	Error() string
