@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/tls"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -100,26 +99,28 @@ func (client *Client) Call(method string, params interface{}, into interface{}) 
 		return err
 	}
 
-	// json decode into interface
-	if jsonDecodeErr := json.Unmarshal(bsRb, &into); jsonDecodeErr != nil {
-		return jsonDecodeErr
+	var raw map[string]interface{}
+	if err = json.Unmarshal(bsRb, &raw); err != nil {
+		return err
 	}
-	log.Printf("json: %+v: ", jsonDecodeErr)
-	mapDecodedResp, ok := into.(map[string]interface{})
-	if !ok {
-		return errors.New("endpoint did not return the expected JSON structure")
-	}
-	errorClass, ok := mapDecodedResp["error_class"]
+	errorClass, ok := raw["error_class"]
 	if ok {
 		errorClassStr := errorClass.(string)
 		if errorClassStr != "" {
 			return liquidweb.LWAPIError{
 				ErrorClass:   errorClassStr,
-				ErrorFullMsg: mapDecodedResp["full_message"].(string),
-				ErrorMsg:     mapDecodedResp["error"].(string),
+				ErrorFullMsg: raw["full_message"].(string),
+				ErrorMsg:     raw["error"].(string),
 			}
 		}
 	}
+
+	// Response should be valid, decode it.
+	if err = json.Unmarshal(bsRb, &into); err != nil {
+		return err
+	}
+
+	log.Printf("json: %+v: ", into)
 
 	return nil
 }
