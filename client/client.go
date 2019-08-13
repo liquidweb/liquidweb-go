@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"time"
@@ -119,9 +118,6 @@ func (client *Client) Call(method string, params interface{}, into interface{}) 
 	if err = json.Unmarshal(bsRb, &into); err != nil {
 		return err
 	}
-
-	log.Printf("json: %+v: ", into)
-
 	return nil
 }
 
