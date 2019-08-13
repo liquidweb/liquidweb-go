@@ -46,7 +46,6 @@ func (fi *FlexInt) UnmarshalJSON(b []byte) error {
 	}
 	i, err := strconv.Atoi(s)
 	if err != nil {
-		log.Printf("there was an atoi error: %v err: %v", i, err)
 		return err
 	}
 	*fi = FlexInt(i)
