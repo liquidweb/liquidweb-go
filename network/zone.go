@@ -36,13 +36,6 @@ type ZoneListParams struct {
 
 // ZoneList is an envelope for the API result containing either a list of zones or an error.
 type ZoneList struct {
-	liquidweb.LWAPIError
 	liquidweb.ListMeta
 	Items []Zone `json:"items,omitempty"`
-}
-
-// ZoneItem is an envelope for the API result containing either a zones or an error.
-type ZoneItem struct {
-	liquidweb.LWAPIError
-	Zone
 }

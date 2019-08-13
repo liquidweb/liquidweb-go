@@ -4,7 +4,7 @@ import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 
 // ZoneBackend is the interface for network zones.
 type ZoneBackend interface {
-	Details(int) *ZoneItem
+	Details(int) (*Zone, error)
 	List(*ZoneListParams) (*ZoneList, error)
 }
 
@@ -14,20 +14,22 @@ type ZoneClient struct {
 }
 
 // Details fetches the details for a zone.
-func (c *ZoneClient) Details(id int) *ZoneItem {
-	var zoneResult *ZoneItem
+func (c *ZoneClient) Details(id int) (*Zone, error) {
+	var zoneResult *Zone
 	zoneParams := ZoneParams{ID: id}
 
-	c.Backend.CallInto("v1/Network/Zone/detail", zoneParams, zoneResult)
-
-	return zoneResult
+	err := c.Backend.Call("v1/Network/Zone/detail", zoneParams, zoneResult)
+	if err != nil {
+		return nil, err
+	}
+	return zoneResult, nil
 }
 
 // List returns a list of network zones.
 func (c *ZoneClient) List(params *ZoneListParams) (*ZoneList, error) {
 	zoneList := &ZoneList{}
 
-	err := c.Backend.CallInto("v1/Network/Zone/list", params, zoneList)
+	err := c.Backend.Call("v1/Network/Zone/list", params, zoneList)
 	if err != nil {
 		return nil, err
 	}

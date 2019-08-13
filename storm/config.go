@@ -21,15 +21,8 @@ type Config struct {
 
 // ConfigList is an envelope for the API result containing either a list of storm configs or an error.
 type ConfigList struct {
-	liquidweb.LWAPIError
 	liquidweb.ListMeta
 	Items []Config
-}
-
-// ConfigItem is an envelope for the API result containing either a storm config or an error.
-type ConfigItem struct {
-	liquidweb.LWAPIError
-	Config
 }
 
 // ConfigListParams are the set of parameters you can pass to the API for listing storm configs.

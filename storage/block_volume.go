@@ -40,26 +40,17 @@ type BlockVolume struct {
 
 // BlockVolumeList is an envelope for the API result containing either a list of block volumes or an error.
 type BlockVolumeList struct {
-	liquidweb.LWAPIError
 	liquidweb.ListMeta
 	Items []BlockVolume `json:"items,omitempty"`
 }
 
-// BlockVolumeItem is an envelope for the API result containing either a block volume or an error.
-type BlockVolumeItem struct {
-	liquidweb.LWAPIError
-	BlockVolume
-}
-
 // BlockVolumeDeletion represents the API result when deleting a block volume.
 type BlockVolumeDeletion struct {
-	liquidweb.LWAPIError
 	Deleted int `json:"deleted"`
 }
 
 // BlockVolumeResize represents the API result when resizing a block volume.
 type BlockVolumeResize struct {
-	liquidweb.LWAPIError
 	NewSize types.FlexInt `json:"new_size,omitempty"`
 	OldSize types.FlexInt `json:"old_size,omitempty"`
 	UniqID  string        `json:"uniq_id,omitempty"`

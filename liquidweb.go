@@ -8,8 +8,7 @@ import (
 
 // Backend is an interface for calls against Liquid Web's API.
 type Backend interface {
-	Call(string, interface{}) (interface{}, error)
-	CallInto(string, interface{}, LWAPIRes) error
+	Call(string, interface{}, interface{}) error
 	CallRaw(string, interface{}) ([]byte, error)
 }
 

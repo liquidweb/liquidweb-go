@@ -94,7 +94,6 @@ func (sz *ServerZone) MarshalJSON() ([]byte, error) {
 
 // ServerStatus represents status of a Storm Server.
 type ServerStatus struct {
-	liquidweb.LWAPIError
 	DetailedStatus string              `json:"detailed_status,omitempty"`
 	Progress       types.FlexInt       `json:"progress,omitempty"`
 	Running        ServerRunningStatus `json:"running,omitempty"`
@@ -111,7 +110,6 @@ type ServerRunningStatus struct {
 
 // ServerDeletion represents the API result when deleting a Storm Server.
 type ServerDeletion struct {
-	liquidweb.LWAPIError
 	Destroyed string `json:"destroyed"`
 }
 
@@ -143,10 +141,4 @@ type ServerList struct {
 	liquidweb.LWAPIError
 	liquidweb.ListMeta
 	Items []Server
-}
-
-// ServerItem is an envelope for the API result containing either a storm server or an error.
-type ServerItem struct {
-	liquidweb.LWAPIError
-	Server
 }

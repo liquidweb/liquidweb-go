@@ -93,76 +93,30 @@ func NewClient(config *Config) *Client {
 //	if gotErr != nil {
 //		panic(gotErr)
 //	}
-func (client *Client) Call(method string, params interface{}) (interface{}, error) {
+func (client *Client) Call(method string, params interface{}, into interface{}) error {
 	bsRb, err := client.CallRaw(method, params)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	// json decode into interface
-	var decodedResp interface{}
-	if jsonDecodeErr := json.Unmarshal(bsRb, &decodedResp); jsonDecodeErr != nil {
-		return nil, jsonDecodeErr
+	if jsonDecodeErr := json.Unmarshal(bsRb, &into); jsonDecodeErr != nil {
+		return jsonDecodeErr
 	}
-	mapDecodedResp, ok := decodedResp.(map[string]interface{})
+	mapDecodedResp, ok := into.(map[string]interface{})
 	if !ok {
-		return nil, errors.New("endpoint did not return the expected JSON structure")
+		return errors.New("endpoint did not return the expected JSON structure")
 	}
 	errorClass, ok := mapDecodedResp["error_class"]
 	if ok {
 		errorClassStr := errorClass.(string)
 		if errorClassStr != "" {
-			return nil, liquidweb.LWAPIError{
+			return liquidweb.LWAPIError{
 				ErrorClass:   errorClassStr,
 				ErrorFullMsg: mapDecodedResp["full_message"].(string),
 				ErrorMsg:     mapDecodedResp["error"].(string),
 			}
 		}
-	}
-	// no LW errors so return the decoded response
-	return decodedResp, nil
-}
-
-// CallInto is like call, but instead of returning an interface you pass it a
-// struct which is filled, much like the json.Unmarshal function.  The struct
-// you pass must satisfy the LWAPIRes interface.  If you embed the LWAPIError
-// struct from this package into your struct, this will be taken care of for you.
-//
-// Example:
-//	type ZoneDetails struct {
-//		lwApi.LWAPIError
-//		AvlZone     string   `json:"availability_zone"`
-//		Desc        string   `json:"description"`
-//		GatewayDevs []string `json:"gateway_devices"`
-//		HvType      string   `json:"hv_type"`
-//		ID          int      `json:"id"`
-//		Legacy      int      `json:"legacy"`
-//		Name        string   `json:"name"`
-//		Status      string   `json:"status"`
-//		SourceHVs   []string `json:"valid_source_hvs"`
-//	}
-//	var zone ZoneDetails
-//	err = apiClient.CallInto("network/zone/details", paramers, &zone)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Got struct %#v\n", zone)
-//
-func (client *Client) CallInto(method string, params interface{}, into liquidweb.LWAPIRes) error {
-	bsRb, err := client.CallRaw(method, params)
-	if err != nil {
-		return err
-	}
-
-	err = json.Unmarshal(bsRb, into)
-	if err != nil {
-		return err
-	}
-
-	if into.HasError() {
-		// the LWAPIRes satisfies the Error interface, so we can just return it on
-		// error.
-		return into
 	}
 
 	return nil

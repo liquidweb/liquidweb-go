@@ -3,7 +3,6 @@ package network
 import (
 	"net"
 
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
@@ -66,14 +65,7 @@ type LoadBalancer struct {
 	VIP                types.IPAddr           `json:"vip,omitempty"`
 }
 
-// LoadBalancerItem is an envelope for the API result containing either a load balancer or an error.
-type LoadBalancerItem struct {
-	liquidweb.LWAPIError
-	LoadBalancer
-}
-
 // LoadBalancerDeletion represents the API result when deleting a load balancer.
 type LoadBalancerDeletion struct {
-	liquidweb.LWAPIError
 	Destroyed string `json:"destroyed"`
 }
