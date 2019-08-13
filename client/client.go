@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"time"
@@ -103,6 +104,7 @@ func (client *Client) Call(method string, params interface{}, into interface{}) 
 	if jsonDecodeErr := json.Unmarshal(bsRb, &into); jsonDecodeErr != nil {
 		return jsonDecodeErr
 	}
+	log.Printf("json: %+v: ", jsonDecodeErr)
 	mapDecodedResp, ok := into.(map[string]interface{})
 	if !ok {
 		return errors.New("endpoint did not return the expected JSON structure")
