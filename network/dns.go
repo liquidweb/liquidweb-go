@@ -74,5 +74,5 @@ type DNSRecordList struct {
 
 // DNSRecordDeletion represents the API result when deleting a DNS Record.
 type DNSRecordDeletion struct {
-	Deleted int `json:"deleted"`
+	Deleted types.FlexInt `json:"deleted"`
 }
