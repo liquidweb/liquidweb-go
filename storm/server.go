@@ -94,10 +94,10 @@ func (sz *ServerZone) MarshalJSON() ([]byte, error) {
 
 // ServerStatus represents status of a Storm Server.
 type ServerStatus struct {
-	DetailedStatus string              `json:"detailed_status,omitempty"`
-	Progress       types.FlexInt       `json:"progress,omitempty"`
-	Running        ServerRunningStatus `json:"running,omitempty"`
-	Status         string              `json:"status,omitempty"`
+	DetailedStatus string               `json:"detailed_status,omitempty"`
+	Progress       types.FlexInt        `json:"progress,omitempty"`
+	Running        *ServerRunningStatus `json:"running,omitempty"`
+	Status         string               `json:"status,omitempty"`
 }
 
 // ServerRunningStatus represents a detailed status step of a Storm Server.
