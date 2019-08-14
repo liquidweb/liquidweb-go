@@ -4,7 +4,7 @@ import liquidweb "git.liquidweb.com/masre/liquidweb-go"
 
 // ConfigBackend is the interface for storm configs.
 type ConfigBackend interface {
-	Details() (*Config, error)
+	Details(string) (*Config, error)
 	List(ConfigListParams) (*ConfigList, error)
 }
 
@@ -14,8 +14,16 @@ type ConfigClient struct {
 }
 
 // Details fetches the details for a storm config.
-func (c *ConfigClient) Details() (*Config, error) {
-	return &Config{}, nil
+func (c *ConfigClient) Details(id string) (*Config, error) {
+	var config Config
+	params := ConfigParams{ID: id}
+
+	err := c.Backend.Call("v1/Storm/Config/details", params, config)
+	if err != nil {
+		return nil, err
+	}
+
+	return &config, nil
 }
 
 // List fetches a list of storm configs.
