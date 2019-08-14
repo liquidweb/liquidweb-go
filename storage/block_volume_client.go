@@ -6,12 +6,12 @@ import (
 
 // BlockVolumeBackend describes the interface for interactions with the API.
 type BlockVolumeBackend interface {
-	Create(*BlockVolumeParams) (*BlockVolumeItem, error)
-	Details(string) *BlockVolumeItem
-	List(*BlockVolumeParams) *BlockVolumeList
-	Update(*BlockVolumeParams) *BlockVolumeItem
-	Delete(*BlockVolumeParams) *BlockVolumeDeletion
-	Resize(*BlockVolumeParams) *BlockVolumeResize
+	Create(*BlockVolumeParams) (*BlockVolume, error)
+	Details(string) (*BlockVolume, error)
+	List(*BlockVolumeParams) (*BlockVolumeList, error)
+	Update(*BlockVolumeParams) (*BlockVolume, error)
+	Delete(string) (*BlockVolumeDeletion, error)
+	Resize(*BlockVolumeParams) (*BlockVolumeResize, error)
 }
 
 // BlockVolumeClient is the backend implementation for interacting with block volumes.
@@ -20,9 +20,9 @@ type BlockVolumeClient struct {
 }
 
 // Create creates a new block volume.
-func (c *BlockVolumeClient) Create(params *BlockVolumeParams) (*BlockVolumeItem, error) {
-	var result BlockVolumeItem
-	err := c.Backend.CallInto("v1/Storage/Block/Volume/create", params, &result)
+func (c *BlockVolumeClient) Create(params *BlockVolumeParams) (*BlockVolume, error) {
+	var result BlockVolume
+	err := c.Backend.Call("v1/Storage/Block/Volume/create", params, &result)
 	if err != nil {
 		return nil, err
 	}
@@ -31,43 +31,56 @@ func (c *BlockVolumeClient) Create(params *BlockVolumeParams) (*BlockVolumeItem,
 }
 
 // Details returns details about a block volume.
-func (c *BlockVolumeClient) Details(id string) *BlockVolumeItem {
-	var result BlockVolumeItem
+func (c *BlockVolumeClient) Details(id string) (*BlockVolume, error) {
+	var result BlockVolume
 	params := BlockVolumeParams{UniqID: id}
 
-	c.Backend.CallInto("v1/Storage/Block/Volume/details", params, &result)
-
-	return &result
+	err := c.Backend.Call("v1/Storage/Block/Volume/details", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // List returns a list of block volumes.
-func (c *BlockVolumeClient) List(params *BlockVolumeParams) *BlockVolumeList {
+func (c *BlockVolumeClient) List(params *BlockVolumeParams) (*BlockVolumeList, error) {
 	list := &BlockVolumeList{}
 
-	c.Backend.CallInto("v1/Storage/Block/Volume/list", params, list)
-	return list
+	err := c.Backend.Call("v1/Storage/Block/Volume/list", params, list)
+	if err != nil {
+		return nil, err
+	}
+	return list, err
 }
 
 // Update will update a block volume.
-func (c *BlockVolumeClient) Update(params *BlockVolumeParams) *BlockVolumeItem {
-	var result BlockVolumeItem
-	c.Backend.CallInto("v1/Storage/Block/Volume/update", params, &result)
-
-	return &result
+func (c *BlockVolumeClient) Update(params *BlockVolumeParams) (*BlockVolume, error) {
+	var result BlockVolume
+	err := c.Backend.Call("v1/Storage/Block/Volume/update", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // Delete will delete a block volume.
-func (c *BlockVolumeClient) Delete(params *BlockVolumeParams) *BlockVolumeDeletion {
+func (c *BlockVolumeClient) Delete(id string) (*BlockVolumeDeletion, error) {
 	var result BlockVolumeDeletion
-	c.Backend.CallInto("v1/Storage/Block/Volume/delete", params, &result)
+	params := BlockVolumeParams{UniqID: id}
 
-	return &result
+	err := c.Backend.Call("v1/Storage/Block/Volume/delete", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // Resize will resize a block volume.
-func (c *BlockVolumeClient) Resize(params *BlockVolumeParams) *BlockVolumeResize {
+func (c *BlockVolumeClient) Resize(params *BlockVolumeParams) (*BlockVolumeResize, error) {
 	var result BlockVolumeResize
-	c.Backend.CallInto("v1/Storage/Block/Volume/resize", params, &result)
-
-	return &result
+	err := c.Backend.Call("v1/Storage/Block/Volume/resize", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

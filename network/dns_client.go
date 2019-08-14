@@ -6,11 +6,11 @@ import (
 
 // DNSBackend describes the interface for interactions with the API.
 type DNSBackend interface {
-	Create(*DNSRecordParams) (*DNSRecordItem, error)
-	Details(int) *DNSRecordItem
-	List(*DNSRecordParams) *DNSRecordList
-	Update(*DNSRecordParams) *DNSRecordItem
-	Delete(*DNSRecordParams) *DNSRecordDeletion
+	Create(*DNSRecordParams) (*DNSRecord, error)
+	Details(int) (*DNSRecord, error)
+	List(*DNSRecordParams) (*DNSRecordList, error)
+	Update(*DNSRecordParams) (*DNSRecord, error)
+	Delete(*DNSRecordParams) (*DNSRecordDeletion, error)
 }
 
 // DNSClient is the backend implementation for interacting with DNS Records.
@@ -19,9 +19,9 @@ type DNSClient struct {
 }
 
 // Create creates a new DNS Record.
-func (c *DNSClient) Create(params *DNSRecordParams) (*DNSRecordItem, error) {
-	var result DNSRecordItem
-	err := c.Backend.CallInto("v1/Network/DNS/Record/create", params, &result)
+func (c *DNSClient) Create(params *DNSRecordParams) (*DNSRecord, error) {
+	var result DNSRecord
+	err := c.Backend.Call("v1/Network/DNS/Record/create", params, &result)
 	if err != nil {
 		return nil, err
 	}
@@ -30,35 +30,44 @@ func (c *DNSClient) Create(params *DNSRecordParams) (*DNSRecordItem, error) {
 }
 
 // Details returns details about a DNS Record.
-func (c *DNSClient) Details(id int) *DNSRecordItem {
-	var result DNSRecordItem
+func (c *DNSClient) Details(id int) (*DNSRecord, error) {
+	var result DNSRecord
 	params := DNSRecordParams{ID: id}
 
-	c.Backend.CallInto("v1/Network/DNS/Record/details", params, &result)
-
-	return &result
+	err := c.Backend.Call("v1/Network/DNS/Record/details", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // List returns a list of DNS Records.
-func (c *DNSClient) List(params *DNSRecordParams) *DNSRecordList {
+func (c *DNSClient) List(params *DNSRecordParams) (*DNSRecordList, error) {
 	list := &DNSRecordList{}
 
-	c.Backend.CallInto("v1/Network/DNS/Record/list", params, list)
-	return list
+	err := c.Backend.Call("v1/Network/DNS/Record/list", params, list)
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
 }
 
 // Update will update a DNS Record.
-func (c *DNSClient) Update(params *DNSRecordParams) *DNSRecordItem {
-	var result DNSRecordItem
-	c.Backend.CallInto("v1/Network/DNS/Record/update", params, &result)
-
-	return &result
+func (c *DNSClient) Update(params *DNSRecordParams) (*DNSRecord, error) {
+	var result DNSRecord
+	err := c.Backend.Call("v1/Network/DNS/Record/update", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // Delete will delete a DNS Record.
-func (c *DNSClient) Delete(params *DNSRecordParams) *DNSRecordDeletion {
+func (c *DNSClient) Delete(params *DNSRecordParams) (*DNSRecordDeletion, error) {
 	var result DNSRecordDeletion
-	c.Backend.CallInto("v1/Network/DNS/Record/delete", params, &result)
-
-	return &result
+	err := c.Backend.Call("v1/Network/DNS/Record/delete", params, &result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

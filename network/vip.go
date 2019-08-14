@@ -1,7 +1,6 @@
 package network
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
 	"git.liquidweb.com/masre/liquidweb-go/types"
 )
 
@@ -23,15 +22,8 @@ type VIP struct {
 	IP           string                 `json:"ip,omitempty"`
 }
 
-// VIPItem is an envelope for the API result containing either a VIP or an error.
-type VIPItem struct {
-	liquidweb.LWAPIError
-	VIP
-}
-
 // VIPDeletion represents the API result when deleting a VIP.
 type VIPDeletion struct {
-	liquidweb.LWAPIError
 	Destroyed string `json:"destroyed"`
 }
 

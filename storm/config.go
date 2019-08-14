@@ -19,17 +19,15 @@ type Config struct {
 	ZoneAvailability map[string]types.NumericalBoolean `json:"zone_availability,omitempty"`
 }
 
-// ConfigList is an envelope for the API result containing either a list of storm configs or an error.
-type ConfigList struct {
-	liquidweb.LWAPIError
-	liquidweb.ListMeta
-	Items []Config
+// ConfigParams is the set of parameters used when fetching storm configuration details
+type ConfigParams struct {
+	ID string `json:"id,omitempty"`
 }
 
-// ConfigItem is an envelope for the API result containing either a storm config or an error.
-type ConfigItem struct {
-	liquidweb.LWAPIError
-	Config
+// ConfigList is an envelope for the API result containing either a list of storm configs or an error.
+type ConfigList struct {
+	liquidweb.ListMeta
+	Items []Config
 }
 
 // ConfigListParams are the set of parameters you can pass to the API for listing storm configs.
