@@ -1,8 +1,8 @@
 package storm
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	liquidweb "github.com/liquidweb/liquidweb-go"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // Config represents the configuration of the server.

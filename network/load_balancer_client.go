@@ -1,7 +1,7 @@
 package network
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+	liquidweb "github.com/liquidweb/liquidweb-go"
 )
 
 // LoadBalancerBackend describes the interface for interactions with the API.

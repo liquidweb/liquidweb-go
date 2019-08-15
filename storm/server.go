@@ -6,8 +6,8 @@ import (
 	"net"
 	"strconv"
 
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	liquidweb "github.com/liquidweb/liquidweb-go"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // ServerListParams is the set parameters used when listing Storm Servers.

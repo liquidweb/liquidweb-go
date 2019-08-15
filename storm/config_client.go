@@ -1,6 +1,6 @@
 package storm
 
-import liquidweb "git.liquidweb.com/masre/liquidweb-go"
+import liquidweb "github.com/liquidweb/liquidweb-go"
 
 // ConfigBackend is the interface for storm configs.
 type ConfigBackend interface {

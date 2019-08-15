@@ -1,8 +1,8 @@
 package storage
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	liquidweb "github.com/liquidweb/liquidweb-go"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // Attachment represents the attachment details for a block volume.

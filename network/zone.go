@@ -1,9 +1,9 @@
 package network
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+	liquidweb "github.com/liquidweb/liquidweb-go"
 
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // Zone is a grouping of network resources.

@@ -1,8 +1,8 @@
 package network
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	liquidweb "github.com/liquidweb/liquidweb-go"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // DNSRecordParams is the set of parameters used when creating or updating a DNS record.

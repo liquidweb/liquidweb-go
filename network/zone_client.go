@@ -1,6 +1,6 @@
 package network
 
-import liquidweb "git.liquidweb.com/masre/liquidweb-go"
+import liquidweb "github.com/liquidweb/liquidweb-go"
 
 // ZoneBackend is the interface for network zones.
 type ZoneBackend interface {

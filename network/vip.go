@@ -1,7 +1,7 @@
 package network
 
 import (
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // VIPParams is the set of parameters used when creating or updating a VIP.

@@ -3,7 +3,7 @@ package liquidweb
 import (
 	"fmt"
 
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // Backend is an interface for calls against Liquid Web's API.

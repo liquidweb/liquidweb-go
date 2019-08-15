@@ -1,7 +1,7 @@
 package storage
 
 import (
-	liquidweb "git.liquidweb.com/masre/liquidweb-go"
+	liquidweb "github.com/liquidweb/liquidweb-go"
 )
 
 // BlockVolumeBackend describes the interface for interactions with the API.

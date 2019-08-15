@@ -3,7 +3,7 @@ package network
 import (
 	"net"
 
-	"git.liquidweb.com/masre/liquidweb-go/types"
+	"github.com/liquidweb/liquidweb-go/types"
 )
 
 // LoadBalancerNodeParams is the resource representing a load balancer node.

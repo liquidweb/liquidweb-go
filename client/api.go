@@ -1,9 +1,9 @@
 package client
 
 import (
-	network "git.liquidweb.com/masre/liquidweb-go/network"
-	"git.liquidweb.com/masre/liquidweb-go/storage"
-	"git.liquidweb.com/masre/liquidweb-go/storm"
+	network "github.com/liquidweb/liquidweb-go/network"
+	"github.com/liquidweb/liquidweb-go/storage"
+	"github.com/liquidweb/liquidweb-go/storm"
 )
 
 // API is the structure that houses all of our various API clients that interact with various Storm resources.
