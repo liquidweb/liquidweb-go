@@ -1,3 +1,3 @@
-module git.liquidweb.com/masre/liquidweb-go
+module github.com/liquidweb/liquidweb-go
 
 // go: no requirements found in Gopkg.lock
