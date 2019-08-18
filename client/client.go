@@ -64,7 +64,7 @@ type Client struct {
 
 // NewClient returns a prepared API client.
 func NewClient(config *Config) *Client {
-	httpClient := &http.Client{Timeout: time.Duration(time.Duration(config.Timeout) * time.Second)}
+	httpClient := &http.Client{Timeout: time.Duration(config.Timeout) * time.Second}
 
 	if !config.SecureTLS {
 		tr := &http.Transport{
