@@ -50,7 +50,7 @@ func (c *BlockVolumeClient) List(params *BlockVolumeParams) (*BlockVolumeList, e
 	if err != nil {
 		return nil, err
 	}
-	return list, err
+	return list, nil
 }
 
 // Update will update a block volume.

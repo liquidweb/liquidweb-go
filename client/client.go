@@ -64,7 +64,7 @@ type Client struct {
 
 // NewClient returns a prepared API client.
 func NewClient(config *Config) *Client {
-	httpClient := &http.Client{Timeout: time.Duration(time.Duration(config.Timeout) * time.Second)}
+	httpClient := &http.Client{Timeout: time.Duration(config.Timeout) * time.Second}
 
 	if !config.SecureTLS {
 		tr := &http.Transport{
@@ -72,17 +72,17 @@ func NewClient(config *Config) *Client {
 		}
 		httpClient.Transport = tr
 	}
-	client := &Client{
-		config:     config,
-		httpClient: httpClient}
 
-	return client
+	return &Client{
+		config:     config,
+		httpClient: httpClient,
+	}
 }
 
 // Call takes a path, such as "network/zone/details" and a params structure.
 // It is recommended that the params be a map[string]interface{}, but you can use
 // anything that serializes to the right json structure.
-// A `interface{}` and an error are returned, in typical go fasion.
+// A `interface{}` and an error are returned, in typical go fashion.
 //
 // Example:
 //	args := map[string]interface{}{
@@ -115,10 +115,7 @@ func (client *Client) Call(method string, params interface{}, into interface{}) 
 	}
 
 	// Response should be valid, decode it.
-	if err = json.Unmarshal(bsRb, &into); err != nil {
-		return err
-	}
-	return nil
+	return json.Unmarshal(bsRb, &into)
 }
 
 // CallRaw is just like Call, except it returns the raw json as a byte slice. However, in contrast to
@@ -137,36 +134,36 @@ func (client *Client) Call(method string, params interface{}, into interface{}) 
 //	// Check got now for LiquidWeb specific exceptions, as described above.
 func (client *Client) CallRaw(method string, params interface{}) ([]byte, error) {
 	//  api wants the "params" prefix key. Do it here so consumers dont have
-	// to do this everytime.
+	// to do this every time.
 	args := map[string]interface{}{
 		"params": params,
 	}
-	encodedArgs, encodeErr := json.Marshal(args)
-	if encodeErr != nil {
-		return nil, encodeErr
-	}
-	// formulate the HTTP POST request
-	url := fmt.Sprintf("%s/%s", client.config.URL, method)
-	req, reqErr := http.NewRequest("POST", url, bytes.NewReader(encodedArgs))
-	if reqErr != nil {
-		return nil, reqErr
-	}
-	// HTTP basic auth
-	req.SetBasicAuth(client.config.Username, client.config.Password)
-	// make the POST request
-	resp, doErr := client.httpClient.Do(req)
-	if doErr != nil {
-		return nil, doErr
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != 200 {
-		return nil, fmt.Errorf("Bad HTTP response code [%d] from [%s]", resp.StatusCode, url)
-	}
-	// read the response body into a byte slice
-	bsRb, readErr := ioutil.ReadAll(resp.Body)
-	if readErr != nil {
-		return nil, readErr
+	encodedArgs, err := json.Marshal(args)
+	if err != nil {
+		return nil, err
 	}
 
-	return bsRb, nil
+	// formulate the HTTP POST request
+	uri := fmt.Sprintf("%s/%s", client.config.URL, method)
+	req, err := http.NewRequest(http.MethodPost, uri, bytes.NewReader(encodedArgs))
+	if err != nil {
+		return nil, err
+	}
+
+	// HTTP basic auth
+	req.SetBasicAuth(client.config.Username, client.config.Password)
+
+	// make the POST request
+	resp, err := client.httpClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("bad HTTP response code [%d] from [%s]", resp.StatusCode, uri)
+	}
+
+	// read the response body into a byte slice
+	return ioutil.ReadAll(resp.Body)
 }
