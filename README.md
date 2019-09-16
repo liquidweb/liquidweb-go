@@ -1,3 +1,5 @@
+![travis build status](https://travis-ci.org/liquidweb/liquidweb-go.svg?branch=master)
+
 ## Usage
 
 ```golang
