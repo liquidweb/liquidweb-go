@@ -100,6 +100,21 @@ type ServerStatus struct {
 	Status         string                `json:"status,omitempty"`
 }
 
+// ServerStop represents a stopped Storm Server response.
+type ServerStop struct {
+	Shutdown bool `json:"shutdown"`
+}
+
+// ServerReboot represents a rebooteed Storm Server response.
+type ServerReboot struct {
+	Rebooted bool `json:"rebooted"`
+}
+
+// ServerStart represents a started Storm Server response.
+type ServerStart struct {
+	Started bool `json:"started"`
+}
+
 // ServerRunningStatus represents a detailed status step of a Storm Server.
 type ServerRunningStatus struct {
 	CurrentStep    string `json:"current_step,omitempty"`
