@@ -3,6 +3,7 @@ package client
 import (
 	lwApi "github.com/liquidweb/go-lwApi"
 
+	"github.com/liquidweb/liquidweb-go/asset"
 	network "github.com/liquidweb/liquidweb-go/network"
 	"github.com/liquidweb/liquidweb-go/storage"
 	"github.com/liquidweb/liquidweb-go/storm"
@@ -18,6 +19,7 @@ type API struct {
 
 	StormConfig storm.ConfigBackend
 	StormServer storm.ServerBackend
+	Asset       asset.AssetBackend
 }
 
 // NewAPI is the API client for interacting with Storm.
@@ -43,6 +45,7 @@ func NewAPI(username string, password string, url string, timeout int) (*API, er
 		StorageBlockVolume:  &storage.BlockVolumeClient{Backend: client.httpClient},
 		StormConfig:         &storm.ConfigClient{Backend: client.httpClient},
 		StormServer:         &storm.ServerClient{Backend: client.httpClient},
+		Asset:               &asset.AssetClient{Backend: client.httpClient},
 	}
 
 	return api, nil
