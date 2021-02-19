@@ -23,6 +23,9 @@ func (c *AssetClient) Details(id string) (*apiTypes.Subaccnt, error) {
 	}
 
 	err := c.Backend.CallIntoInterface("bleed/asset/details", args, &result)
+	if err != nil {
+		return nil, err
+	}
 
-	return &result, err
+	return &result, nil
 }
