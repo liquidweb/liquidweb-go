@@ -12,6 +12,7 @@ import (
 // API is the structure that houses all of our various API clients that interact with various Storm resources.
 type API struct {
 	NetworkDNS          network.DNSBackend
+	NetworkDNSZone      network.DNSZoneBackend
 	NetworkLoadBalancer network.LoadBalancerBackend
 	NetworkVIP          network.VIPBackend
 	NetworkZone         network.ZoneBackend
@@ -38,6 +39,7 @@ func NewAPI(username string, password string, url string, timeout int) (*API, er
 	}
 
 	api := &API{
+		NetworkDNSZone:      &network.DNSZoneClient{Backend: client.httpClient},
 		NetworkDNS:          &network.DNSClient{Backend: client.httpClient},
 		NetworkLoadBalancer: &network.LoadBalancerClient{Backend: client.httpClient},
 		NetworkVIP:          &network.VIPClient{Backend: client.httpClient},
