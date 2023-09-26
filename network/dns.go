@@ -52,6 +52,7 @@ type DNSRecordParams struct {
 	Serial          int              `json:"serial,omitempty"`
 	Target          string           `json:"target,omitempty"`
 	Weight          int              `json:"weight,omitempty"`
+	PageNum         int              `json:"page_num,omitempty"`
 }
 
 // RegionOverrides contains region data.
