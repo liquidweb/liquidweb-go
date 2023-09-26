@@ -7,7 +7,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/liquidweb/liquidweb-go/client"
 	"github.com/liquidweb/liquidweb-go/network"
 	"github.com/stretchr/testify/assert"
@@ -39,7 +38,12 @@ func TestLiveListRecords(t *testing.T) {
 	dnsRecords, err := api.NetworkDNS.List(&reqParams)
 	require.NoError(t, err, "got an error using parameters %#v", reqParams)
 	assert.NotZero(t, len(dnsRecords.Items))
-	log.Printf("got back %s", spew.Sdump(dnsRecords))
+	records := []string{}
+	for _, each := range dnsRecords.Items {
+		records = append(records, (each.Name + " => " + each.RData))
+	}
+	log.Printf("all zones on zone %s:\n%s\n",
+		*testZone, strings.Join(records, "\n"))
 }
 
 func TestLiveZones(t *testing.T) {
