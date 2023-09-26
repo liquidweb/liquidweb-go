@@ -1,7 +1,7 @@
 package client
 
 import (
-	lwApi "github.com/liquidweb/go-lwApi"
+	lwApi "github.com/liquidweb/liquidweb-go/lib/legacy"
 
 	"github.com/liquidweb/liquidweb-go/asset"
 	network "github.com/liquidweb/liquidweb-go/network"
